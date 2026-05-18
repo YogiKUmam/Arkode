@@ -1,6 +1,3 @@
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
 import { posts, site } from '../content/site';
@@ -29,15 +26,9 @@ export function Blog() {
         <div className="grid gap-5 md:grid-cols-3">
           {posts.map((post) => (
             <article key={post.slug} className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-semibold text-ink">{post.title}</h2>
+              <h3 className="text-xl font-semibold text-ink">{post.title}</h3>
               <p className="mt-4 flex-1 leading-7 text-slate-600">{post.excerpt}</p>
-              <Link
-                to={`/blog/${post.slug}`}
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-teal-800"
-              >
-                Read preview
-                <ArrowRight aria-hidden="true" size={16} />
-              </Link>
+              <p className="mt-6 text-sm font-semibold text-accent">Artikel preview</p>
             </article>
           ))}
         </div>

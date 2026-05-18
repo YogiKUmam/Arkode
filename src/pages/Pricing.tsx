@@ -29,7 +29,7 @@ export function Pricing() {
         <div className="grid gap-5 md:grid-cols-2">
           {pricingModels.map((model) => (
             <article key={model.title} className="rounded-lg border border-line bg-white p-6 shadow-sm">
-              <h2 className="text-2xl font-semibold text-ink">{model.title}</h2>
+              <h3 className="text-2xl font-semibold text-ink">{model.title}</h3>
               <p className="mt-3 text-lg font-semibold text-accent">{model.price}</p>
               <p className="mt-4 leading-7 text-slate-600">{model.fit}</p>
               <ul className="mt-6 space-y-3">

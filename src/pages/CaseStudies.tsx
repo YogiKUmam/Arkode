@@ -37,7 +37,7 @@ export function CaseStudies() {
                 <span className="text-sm text-slate-500">Timeline: {item.timeline}</span>
               </div>
 
-              <h2 className="mt-5 text-2xl font-semibold text-ink">{item.title}</h2>
+              <h3 className="mt-5 text-2xl font-semibold text-ink">{item.title}</h3>
               <p className="mt-3 leading-7 text-slate-600">{item.summary}</p>
 
               <div className="mt-5 flex flex-wrap gap-2" aria-label={`${item.title} technology stack`}>
@@ -52,9 +52,9 @@ export function CaseStudies() {
               </div>
 
               <div className="mt-6 rounded-md bg-paper p-4">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
                   Result
-                </h3>
+                </p>
                 <p className="mt-2 font-medium leading-7 text-accent">{item.result}</p>
               </div>
             </article>
