@@ -1,4 +1,5 @@
 import { Mail, Phone, Send } from 'lucide-react';
+import type { FormEvent } from 'react';
 
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
@@ -12,6 +13,23 @@ const projectTypes = [
 ];
 
 export function Contact() {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const lines = [
+      `Nama: ${formData.get('name')}`,
+      `Perusahaan: ${formData.get('company') || '-'}`,
+      `Kontak: ${formData.get('contact')}`,
+      `Jenis project: ${formData.get('projectType')}`,
+      '',
+      `Pesan: ${formData.get('message')}`,
+    ];
+    const whatsappNumber = site.phone.replace(/\D/g, '');
+    const message = encodeURIComponent(lines.join('\n'));
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank', 'noopener,noreferrer');
+  }
+
   return (
     <>
       <Seo
@@ -38,9 +56,7 @@ export function Contact() {
       >
         <div className="grid gap-6 lg:grid-cols-[1fr_0.42fr] lg:items-start">
           <form
-            action={site.whatsapp}
-            method="get"
-            target="_blank"
+            onSubmit={handleSubmit}
             className="rounded-lg border border-line bg-white p-6 shadow-panel sm:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
