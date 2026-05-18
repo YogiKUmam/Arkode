@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Layout } from './components/Layout';
+import { Home } from './pages/Home';
 
 type ScaffoldPageProps = {
   title: string;
@@ -18,7 +19,7 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<ScaffoldPage title="Home" />} />
+        <Route index element={<Home />} />
         <Route path="/services" element={<ScaffoldPage title="Services" />} />
         <Route path="/case-studies" element={<ScaffoldPage title="Case Studies" />} />
         <Route path="/about" element={<ScaffoldPage title="About" />} />
