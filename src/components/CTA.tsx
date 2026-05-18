@@ -6,7 +6,7 @@ import { site } from '../content/site';
 export function CTA() {
   return (
     <section className="bg-slate-950 py-16 text-white sm:py-20">
-      <div className="container-shell flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+      <div className="container-shell grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">
             Start a project
@@ -25,6 +25,7 @@ export function CTA() {
           Contact us
           <ArrowRight aria-hidden="true" size={18} />
         </Link>
+        <p className="text-sm text-slate-400 sm:col-span-2">Email: {site.email} · Respons biasanya dalam 1 hari kerja.</p>
       </div>
     </section>
   );

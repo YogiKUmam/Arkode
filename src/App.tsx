@@ -25,10 +25,10 @@ export default function App() {
         <Route path="/pricing" element={<ScaffoldPage title="Pricing" />} />
         <Route path="/blog" element={<ScaffoldPage title="Blog" />} />
         <Route path="/contact" element={<ScaffoldPage title="Contact" />} />
-        <Route path="/privacy" element={<ScaffoldPage title="Privacy" />} />
+        <Route path="/privacy" element={<ScaffoldPage title="Privacy Policy" />} />
         <Route path="/terms" element={<ScaffoldPage title="Terms" />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
