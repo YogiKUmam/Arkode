@@ -4,21 +4,11 @@ import { Layout } from './components/Layout';
 import { About } from './pages/About';
 import { Blog } from './pages/Blog';
 import { CaseStudies } from './pages/CaseStudies';
+import { Contact } from './pages/Contact';
 import { Home } from './pages/Home';
+import { Privacy, Terms } from './pages/Legal';
 import { Pricing } from './pages/Pricing';
 import { Services } from './pages/Services';
-
-type ScaffoldPageProps = {
-  title: string;
-};
-
-function ScaffoldPage({ title }: ScaffoldPageProps) {
-  return (
-    <section className="container-shell py-16 sm:py-20">
-      <h1 className="text-4xl font-semibold text-slate-950 sm:text-5xl">{title}</h1>
-    </section>
-  );
-}
 
 export default function App() {
   return (
@@ -30,9 +20,9 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/contact" element={<ScaffoldPage title="Contact" />} />
-        <Route path="/privacy" element={<ScaffoldPage title="Privacy Policy" />} />
-        <Route path="/terms" element={<ScaffoldPage title="Terms" />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
