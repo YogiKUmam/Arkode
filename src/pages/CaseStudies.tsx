@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import { CTA } from '../components/CTA';
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
+import { useManagedContent } from '../content/adminContent';
 import { caseStudies, site } from '../content/site';
 
 export function CaseStudies() {
+  const managedContent = useManagedContent();
+  const visibleCaseStudies = [...caseStudies, ...managedContent.caseStudies];
+
   return (
     <>
       <Seo
@@ -28,7 +32,7 @@ export function CaseStudies() {
 
       <Section eyebrow="Project examples" title="Bukti awal yang ringkas dan mudah dievaluasi." className="bg-white">
         <div className="grid gap-5 md:grid-cols-2">
-          {caseStudies.map((item) => (
+          {visibleCaseStudies.map((item) => (
             <article key={item.title} className="rounded-lg border border-line bg-white p-6 shadow-sm">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="rounded-md bg-teal-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-teal-800">

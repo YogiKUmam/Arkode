@@ -1,8 +1,15 @@
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
+import { useManagedContent } from '../content/adminContent';
 import { posts, site } from '../content/site';
 
 export function Blog() {
+  const managedContent = useManagedContent();
+  const visiblePosts = [
+    ...posts,
+    ...managedContent.posts.filter((post) => post.status === 'Published'),
+  ];
+
   return (
     <>
       <Seo
@@ -24,7 +31,7 @@ export function Blog() {
 
       <Section eyebrow="Latest posts" title="Preview artikel yang bisa menjadi titik awal audit." className="bg-white">
         <div className="grid gap-5 md:grid-cols-3">
-          {posts.map((post) => (
+          {visiblePosts.map((post) => (
             <article key={post.slug} className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm">
               <h3 className="text-xl font-semibold text-ink">{post.title}</h3>
               <p className="mt-4 flex-1 leading-7 text-slate-600">{post.excerpt}</p>
