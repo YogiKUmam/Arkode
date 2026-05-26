@@ -8,6 +8,7 @@ export type ManagedCaseStudy = {
   stack: string[];
   timeline: string;
   result: string;
+  demoUrl?: string;
 };
 
 export type ManagedPost = {
@@ -23,8 +24,8 @@ export type ManagedContent = {
   posts: ManagedPost[];
 };
 
-export const adminContentKey = 'nusacode-admin-content';
-const adminContentUpdatedEvent = 'nusacode-admin-content-updated';
+export const adminContentKey = 'arkode-labs-admin-content';
+const adminContentUpdatedEvent = 'arkode-labs-admin-content-updated';
 
 const emptyContent: ManagedContent = {
   caseStudies: [],

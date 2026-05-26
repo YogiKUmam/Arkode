@@ -4,6 +4,7 @@ import { Layout } from './components/Layout';
 import { About } from './pages/About';
 import { Admin } from './pages/Admin';
 import { Blog } from './pages/Blog';
+import { CaseStudyDemo } from './pages/CaseStudyDemo';
 import { CaseStudies } from './pages/CaseStudies';
 import { Contact } from './pages/Contact';
 import { Home } from './pages/Home';
@@ -18,6 +19,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/case-studies" element={<CaseStudies />} />
+        <Route path="/case-studies/:slug/demo" element={<CaseStudyDemo />} />
         <Route path="/about" element={<About />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/blog" element={<Blog />} />

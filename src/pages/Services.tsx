@@ -5,6 +5,7 @@ import { ServiceCard, SimpleCard } from '../components/Cards';
 import { CTA } from '../components/CTA';
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
+import { ProductMockup } from '../components/VisualMockups';
 import { processSteps, services, site } from '../content/site';
 
 export function Services() {
@@ -12,13 +13,14 @@ export function Services() {
     <>
       <Seo
         title={`Services | ${site.name}`}
-        description="Layanan website company profile, custom web app, dan maintenance untuk bisnis yang butuh aset digital rapi dan siap tumbuh."
+        description="Layanan Arkode Labs untuk website company profile, landing page, web application, dashboard, UI/UX, dan maintenance."
       />
 
       <section className="py-16 sm:py-24">
         <div className="container-shell max-w-4xl">
-          <h1 className="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-            Layanan software house untuk website bisnis dan sistem web yang bisa diandalkan.
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Services</p>
+          <h1 className="mt-4 text-4xl font-semibold leading-tight text-navy sm:text-5xl">
+            Layanan software house untuk website, web app, dashboard, dan sistem digital custom.
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
             Kami membantu dari struktur, desain, build, launch, sampai support setelah online.
@@ -28,7 +30,7 @@ export function Services() {
           <div className="mt-8">
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-white transition hover:bg-teal-800"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-white transition hover:bg-navy"
             >
               Diskusi kebutuhan
               <ArrowRight aria-hidden="true" size={18} />
@@ -54,10 +56,13 @@ export function Services() {
         title="Ritme project dibuat transparan dari awal."
         intro="Kami menjaga proses tetap praktis: mulai dari memahami masalah, menyepakati prioritas, lalu membangun dengan checkpoint yang jelas."
       >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {processSteps.map((step, index) => (
-            <SimpleCard key={step.title} title={`${index + 1}. ${step.title}`} text={step.text} />
-          ))}
+        <div className="grid gap-6 lg:grid-cols-[0.8fr_1fr] lg:items-start">
+          <ProductMockup variant="maintenance" title="Monitoring, QA, dan improvement setelah launch tetap terlihat rapi." eyebrow="Support preview" />
+          <div className="grid gap-4 sm:grid-cols-2">
+            {processSteps.map((step, index) => (
+              <SimpleCard key={step.title} title={`${index + 1}. ${step.title}`} text={step.text} />
+            ))}
+          </div>
         </div>
       </Section>
 

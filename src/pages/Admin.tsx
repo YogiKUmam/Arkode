@@ -19,6 +19,7 @@ type CaseStudyForm = {
   stack: string;
   timeline: string;
   result: string;
+  demoUrl: string;
 };
 
 type BlogForm = {
@@ -35,6 +36,7 @@ const emptyCaseStudyForm: CaseStudyForm = {
   stack: '',
   timeline: '',
   result: '',
+  demoUrl: '',
 };
 
 const emptyBlogForm: BlogForm = {
@@ -56,7 +58,7 @@ function StatCard({ title, value, text }: { title: string; value: string; text: 
   return (
     <article className="rounded-lg border border-line bg-white p-5 shadow-sm">
       <p className="text-sm font-medium text-slate-500">{title}</p>
-      <p className="mt-3 text-3xl font-semibold text-ink">{value}</p>
+      <p className="mt-3 text-3xl font-semibold text-navy">{value}</p>
       <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
     </article>
   );
@@ -97,6 +99,7 @@ export function Admin() {
         .filter(Boolean),
       timeline: caseForm.timeline.trim(),
       result: caseForm.result.trim(),
+      demoUrl: caseForm.demoUrl.trim() || undefined,
     };
 
     const nextCaseStudies = editingCaseId
@@ -138,6 +141,7 @@ export function Admin() {
       stack: item.stack.join(', '),
       timeline: item.timeline,
       result: item.result,
+      demoUrl: item.demoUrl ?? '',
     });
   }
 
@@ -171,17 +175,18 @@ export function Admin() {
     <>
       <Seo
         title={`Admin Dashboard | ${site.name}`}
-        description="Dashboard lokal untuk mengelola case study dan blog NusaCode Studio."
+        description="Dashboard lokal untuk mengelola case study dan blog Arkode Labs."
       />
 
       <section className="py-12 sm:py-16">
         <div className="container-shell">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="rounded-lg border border-line bg-white p-6 shadow-panel sm:p-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700">
-                Local content studio
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+                Arkode Labs content studio
               </p>
-              <h1 className="mt-3 text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+              <h1 className="mt-3 text-4xl font-semibold leading-tight text-navy sm:text-5xl">
                 Admin content dashboard
               </h1>
               <p className="mt-5 text-lg leading-8 text-slate-600">
@@ -189,12 +194,22 @@ export function Admin() {
                 perangkat ini dan langsung dipakai untuk preview halaman publik.
               </p>
             </div>
+            <img src={site.logo} alt={`${site.name} logo`} className="h-28 w-28 rounded-lg object-cover" />
+          </div>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <a
               href="/case-studies"
-              className="inline-flex items-center justify-center rounded-md border border-line bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-accent hover:text-accent"
+              className="inline-flex items-center justify-center rounded-md border border-line bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:border-accent hover:text-accent"
             >
               Lihat halaman publik
             </a>
+            <a
+              href="/blog"
+              className="inline-flex items-center justify-center rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy"
+            >
+              Preview blog
+            </a>
+          </div>
           </div>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -211,35 +226,39 @@ export function Admin() {
           <form onSubmit={saveCaseStudy} className="rounded-lg border border-line bg-white p-6 shadow-panel">
             <div className="flex items-center gap-3">
               <Layers3 className="h-5 w-5 text-accent" aria-hidden="true" />
-              <h2 className="text-2xl font-semibold text-ink">Case study manager</h2>
+              <h2 className="text-2xl font-semibold text-navy">Case study manager</h2>
             </div>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <label className="grid gap-2 text-sm font-semibold text-ink">
                 Case study title
-                <input required value={caseForm.title} onChange={(event) => updateCaseForm('title', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal" />
+                <input required value={caseForm.title} onChange={(event) => updateCaseForm('title', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
               <label className="grid gap-2 text-sm font-semibold text-ink">
                 Case study label
-                <input required value={caseForm.label} onChange={(event) => updateCaseForm('label', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal" />
+                <input required value={caseForm.label} onChange={(event) => updateCaseForm('label', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
               <label className="grid gap-2 text-sm font-semibold text-ink sm:col-span-2">
                 Case study summary
-                <textarea required rows={3} value={caseForm.summary} onChange={(event) => updateCaseForm('summary', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal" />
+                <textarea required rows={3} value={caseForm.summary} onChange={(event) => updateCaseForm('summary', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
               <label className="grid gap-2 text-sm font-semibold text-ink">
                 Case study stack
-                <input required value={caseForm.stack} onChange={(event) => updateCaseForm('stack', event.target.value)} placeholder="React, Tailwind, Supabase" className="rounded-md border border-line px-4 py-3 font-normal" />
+                <input required value={caseForm.stack} onChange={(event) => updateCaseForm('stack', event.target.value)} placeholder="React, Tailwind, Supabase" className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
               <label className="grid gap-2 text-sm font-semibold text-ink">
                 Case study timeline
-                <input required value={caseForm.timeline} onChange={(event) => updateCaseForm('timeline', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal" />
+                <input required value={caseForm.timeline} onChange={(event) => updateCaseForm('timeline', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
               <label className="grid gap-2 text-sm font-semibold text-ink sm:col-span-2">
                 Case study result
-                <textarea required rows={3} value={caseForm.result} onChange={(event) => updateCaseForm('result', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal" />
+                <textarea required rows={3} value={caseForm.result} onChange={(event) => updateCaseForm('result', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
+              </label>
+              <label className="grid gap-2 text-sm font-semibold text-ink sm:col-span-2">
+                Live demo URL
+                <input value={caseForm.demoUrl} onChange={(event) => updateCaseForm('demoUrl', event.target.value)} placeholder="/case-studies/nama-project/demo atau https://..." className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
             </div>
-            <button type="submit" className="mt-6 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-800">
+            <button type="submit" className="mt-6 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy">
               <Plus size={18} aria-hidden="true" />
               {editingCaseId ? 'Update case study' : 'Save case study'}
             </button>
@@ -248,30 +267,30 @@ export function Admin() {
           <form onSubmit={saveBlogPost} className="rounded-lg border border-line bg-white p-6 shadow-panel">
             <div className="flex items-center gap-3">
               <FileText className="h-5 w-5 text-accent" aria-hidden="true" />
-              <h2 className="text-2xl font-semibold text-ink">Blog manager</h2>
+              <h2 className="text-2xl font-semibold text-navy">Blog manager</h2>
             </div>
             <div className="mt-6 grid gap-4">
               <label className="grid gap-2 text-sm font-semibold text-ink">
                 Blog title
-                <input required value={blogForm.title} onChange={(event) => updateBlogForm('title', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal" />
+                <input required value={blogForm.title} onChange={(event) => updateBlogForm('title', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
               <label className="grid gap-2 text-sm font-semibold text-ink">
                 Blog slug
-                <input value={blogForm.slug} onChange={(event) => updateBlogForm('slug', event.target.value)} placeholder="otomatis dari judul jika kosong" className="rounded-md border border-line px-4 py-3 font-normal" />
+                <input value={blogForm.slug} onChange={(event) => updateBlogForm('slug', event.target.value)} placeholder="otomatis dari judul jika kosong" className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
               <label className="grid gap-2 text-sm font-semibold text-ink">
                 Blog excerpt
-                <textarea required rows={4} value={blogForm.excerpt} onChange={(event) => updateBlogForm('excerpt', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal" />
+                <textarea required rows={4} value={blogForm.excerpt} onChange={(event) => updateBlogForm('excerpt', event.target.value)} className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
               <label className="grid gap-2 text-sm font-semibold text-ink">
                 Blog status
-                <select value={blogForm.status} onChange={(event) => updateBlogForm('status', event.target.value as ManagedPost['status'])} className="rounded-md border border-line px-4 py-3 font-normal">
+                <select value={blogForm.status} onChange={(event) => updateBlogForm('status', event.target.value as ManagedPost['status'])} className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent">
                   <option>Published</option>
                   <option>Draft</option>
                 </select>
               </label>
             </div>
-            <button type="submit" className="mt-6 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-800">
+            <button type="submit" className="mt-6 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy">
               <Plus size={18} aria-hidden="true" />
               {editingPostId ? 'Update blog post' : 'Save blog post'}
             </button>
@@ -282,16 +301,17 @@ export function Admin() {
       <section className="py-12 sm:py-16">
         <div className="container-shell grid gap-8 xl:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-semibold text-ink">Saved case studies</h2>
+            <h2 className="text-2xl font-semibold text-navy">Saved case studies</h2>
             <div className="mt-5 grid gap-4">
               {content.caseStudies.length === 0 && <p className="text-slate-600">Belum ada case study tambahan.</p>}
               {content.caseStudies.map((item) => (
                 <article key={item.id} className="rounded-lg border border-line bg-white p-5 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-teal-700">{item.label}</p>
-                  <h3 className="mt-3 text-xl font-semibold text-ink">{item.title}</h3>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{item.label}</p>
+                  <h3 className="mt-3 text-xl font-semibold text-navy">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{item.summary}</p>
+                  {item.demoUrl && <p className="mt-2 text-sm font-semibold text-accent">Demo: {item.demoUrl}</p>}
                   <div className="mt-4 flex gap-2">
-                    <button type="button" onClick={() => editCaseStudy(item)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-ink hover:border-accent">
+                    <button type="button" onClick={() => editCaseStudy(item)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-navy hover:border-accent">
                       <Edit3 size={16} aria-hidden="true" /> Edit
                     </button>
                     <button type="button" onClick={() => deleteCaseStudy(item.id)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-slate-600 hover:border-red-300 hover:text-red-700">
@@ -304,16 +324,16 @@ export function Admin() {
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-ink">Saved blog posts</h2>
+            <h2 className="text-2xl font-semibold text-navy">Saved blog posts</h2>
             <div className="mt-5 grid gap-4">
               {content.posts.length === 0 && <p className="text-slate-600">Belum ada blog tambahan.</p>}
               {content.posts.map((item) => (
                 <article key={item.id} className="rounded-lg border border-line bg-white p-5 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-teal-700">{item.status}</p>
-                  <h3 className="mt-3 text-xl font-semibold text-ink">{item.title}</h3>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{item.status}</p>
+                  <h3 className="mt-3 text-xl font-semibold text-navy">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{item.excerpt}</p>
                   <div className="mt-4 flex gap-2">
-                    <button type="button" onClick={() => editPost(item)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-ink hover:border-accent">
+                    <button type="button" onClick={() => editPost(item)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-navy hover:border-accent">
                       <Edit3 size={16} aria-hidden="true" /> Edit
                     </button>
                     <button type="button" onClick={() => deletePost(item.id)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-slate-600 hover:border-red-300 hover:text-red-700">

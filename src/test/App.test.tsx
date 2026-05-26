@@ -19,7 +19,7 @@ describe('App routes', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /kami membangun website dan sistem web yang membuat bisnis terlihat kredibel/i,
+        name: /software house untuk website, web app, dan sistem digital yang siap berkembang/i,
       }),
     ).toBeInTheDocument();
   });
@@ -30,7 +30,7 @@ describe('App routes', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /layanan software house untuk website bisnis dan sistem web yang bisa diandalkan/i,
+        name: /layanan software house untuk website, web app, dashboard, dan sistem digital custom/i,
       }),
     ).toBeInTheDocument();
   });

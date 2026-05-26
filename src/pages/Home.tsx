@@ -5,6 +5,7 @@ import { ServiceCard, SimpleCard } from '../components/Cards';
 import { CTA } from '../components/CTA';
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
+import { ProductMockup } from '../components/VisualMockups';
 import { caseStudies, faqs, problems, processSteps, services, site } from '../content/site';
 
 const trustItems = [
@@ -29,31 +30,33 @@ export function Home() {
   return (
     <>
       <Seo
-        title={`${site.name} | Software House Website dan Sistem Web`}
-        description="Software house untuk company profile website, custom web app, dan maintenance yang membantu bisnis terlihat kredibel dan siap tumbuh."
+        title={`${site.name} | Software House dan Digital Solution Partner`}
+        description="Software house untuk website profesional, web app, dashboard, UI/UX, dan maintenance yang siap berkembang."
       />
 
       <section className="py-16 sm:py-24">
         <div className="container-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
-            <h1 className="text-4xl font-semibold leading-tight text-ink sm:text-5xl lg:text-6xl">
-              Kami membangun website dan sistem web yang membuat bisnis terlihat kredibel.
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+              {site.category}
+            </p>
+            <h1 className="mt-4 text-4xl font-semibold leading-tight text-navy sm:text-5xl lg:text-6xl">
+              {site.heroHeadline}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              Dari company profile website sampai web app internal, kami merancang, membangun, dan
-              mengoptimalkan aset digital yang siap dipakai untuk tumbuh.
+              {site.heroSubheadline}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-white transition hover:bg-teal-800"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-white transition hover:bg-navy"
               >
-                Jadwalkan Konsultasi
+                Konsultasi Proyek
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
               <Link
                 to="/services"
-                className="inline-flex items-center justify-center rounded-md border border-line bg-white px-5 py-3 font-semibold text-ink transition hover:border-accent hover:text-accent"
+                className="inline-flex items-center justify-center rounded-md border border-line bg-white px-5 py-3 font-semibold text-navy transition hover:border-accent hover:text-accent"
               >
                 Lihat Layanan
               </Link>
@@ -61,6 +64,15 @@ export function Home() {
           </div>
 
           <div className="rounded-lg border border-line bg-white p-6 shadow-panel">
+            <div className="mb-5 flex items-center gap-4">
+              <img src={site.logo} alt={`${site.name} logo`} className="h-20 w-20 rounded-lg object-cover" />
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+                  Code. Build. Solve.
+                </p>
+                <p className="mt-2 text-2xl font-bold text-navy">{site.name}</p>
+              </div>
+            </div>
             <div className="grid gap-4">
               {trustItems.map((item) => {
                 const Icon = item.icon;
@@ -69,12 +81,15 @@ export function Home() {
                   <article key={item.title} className="flex gap-4 rounded-md bg-paper p-4">
                     <Icon aria-hidden="true" className="h-6 w-6 shrink-0 text-accent" />
                     <div>
-                      <h2 className="font-semibold text-ink">{item.title}</h2>
+                      <h2 className="font-semibold text-navy">{item.title}</h2>
                       <p className="mt-1 text-sm leading-6 text-slate-600">{item.text}</p>
                     </div>
                   </article>
                 );
               })}
+            </div>
+            <div className="mt-5">
+              <ProductMockup variant="dashboard" title="Dashboard, website, dan web app dalam satu fondasi delivery." eyebrow="Arkode preview" />
             </div>
           </div>
         </div>
@@ -82,7 +97,7 @@ export function Home() {
 
       <Section
         eyebrow="Masalah yang kami selesaikan"
-        title="Website dan sistem yang bekerja untuk bisnis, bukan hanya terlihat online."
+        title="Solusi digital yang rapi dari tampilan sampai fondasi teknis."
       >
         <div className="grid gap-4 md:grid-cols-2">
           {problems.map((problem) => (
@@ -97,14 +112,25 @@ export function Home() {
 
       <Section
         eyebrow="Layanan utama"
-        title="Tiga cara kami membantu bisnis Anda tumbuh."
-        intro="Mulai dari profil bisnis yang kredibel sampai sistem web yang merapikan operasional."
+        title="Layanan utama Arkode Labs."
+        intro="Mulai dari company profile, landing page, web application, dashboard, UI/UX, sampai maintenance."
         className="bg-white"
       >
         <div className="grid gap-5 lg:grid-cols-3">
           {services.map((service) => (
             <ServiceCard key={service.title} {...service} />
           ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Visual approach"
+        title="Setiap solusi dibangun dengan bentuk visual yang mudah dipahami."
+        intro="Preview, dashboard, dan flow dibuat sejak awal agar tim bisnis bisa melihat arah produk sebelum development penuh."
+      >
+        <div className="grid gap-5 md:grid-cols-2">
+          <ProductMockup variant="website" title="Website company profile dengan struktur pesan dan CTA yang jelas." eyebrow="Website preview" />
+          <ProductMockup variant="process" title="User flow dan delivery plan yang bisa dipantau sejak discovery." eyebrow="Process preview" />
         </div>
       </Section>
 
@@ -119,7 +145,7 @@ export function Home() {
                 {item.stack.map((technology) => (
                   <span
                     key={technology}
-                    className="rounded-md bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-800"
+                    className="rounded-md bg-paper px-3 py-1 text-xs font-semibold text-accent"
                   >
                     {technology}
                   </span>

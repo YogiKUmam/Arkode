@@ -6,16 +6,18 @@ export default {
     extend: {
       colors: {
         ink: '#111827',
-        paper: '#f8fafc',
-        line: '#d8dee9',
-        accent: '#0f766e',
-        signal: '#b45309',
+        navy: '#0B1020',
+        paper: '#EFF6FF',
+        line: '#CFE0F5',
+        accent: '#2563EB',
+        cyan: '#22D3EE',
+        signal: '#0EA5E9',
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        panel: '0 18px 50px rgba(17, 24, 39, 0.08)',
+        panel: '0 24px 70px rgba(11, 16, 32, 0.10)',
       },
     },
   },

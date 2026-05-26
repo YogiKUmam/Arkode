@@ -7,12 +7,12 @@ export function Privacy() {
     <>
       <Seo
         title={`Privacy Policy | ${site.name}`}
-        description="Kebijakan privasi awal NusaCode Studio tentang penggunaan data kontak dan komunikasi project."
+        description="Kebijakan privasi awal Arkode Labs tentang penggunaan data kontak dan komunikasi project."
       />
 
       <section className="py-16 sm:py-24">
         <div className="container-shell max-w-4xl">
-          <h1 className="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+          <h1 className="text-4xl font-semibold leading-tight text-navy sm:text-5xl">
             Privacy Policy
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
@@ -43,7 +43,7 @@ export function Privacy() {
           </p>
           <p>
             Anda dapat meminta koreksi atau penghapusan informasi kontak dengan menghubungi kami di{' '}
-            <a className="font-semibold text-teal-800 hover:text-teal-900" href={`mailto:${site.email}`}>
+            <a className="font-semibold text-accent hover:text-navy" href={`mailto:${site.email}`}>
               {site.email}
             </a>
             .
@@ -59,12 +59,12 @@ export function Terms() {
     <>
       <Seo
         title={`Terms | ${site.name}`}
-        description="Ketentuan awal penggunaan website dan layanan NusaCode Studio."
+        description="Ketentuan awal penggunaan website dan layanan Arkode Labs."
       />
 
       <section className="py-16 sm:py-24">
         <div className="container-shell max-w-4xl">
-          <h1 className="text-4xl font-semibold leading-tight text-ink sm:text-5xl">Terms</h1>
+          <h1 className="text-4xl font-semibold leading-tight text-navy sm:text-5xl">Terms</h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
             Ketentuan ini menjadi pengantar umum untuk penggunaan website dan komunikasi awal
             layanan {site.name}.
@@ -95,7 +95,7 @@ export function Terms() {
           </p>
           <p>
             Untuk pertanyaan tentang ketentuan ini, hubungi kami di{' '}
-            <a className="font-semibold text-teal-800 hover:text-teal-900" href={`mailto:${site.email}`}>
+            <a className="font-semibold text-accent hover:text-navy" href={`mailto:${site.email}`}>
               {site.email}
             </a>
             .

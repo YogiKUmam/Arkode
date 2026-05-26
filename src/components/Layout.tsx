@@ -11,22 +11,27 @@ export function Layout() {
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     [
-      'rounded-md px-3 py-2 text-sm font-medium transition',
-      isActive ? 'bg-teal-50 text-teal-800' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950',
+      'rounded-md px-3 py-2 text-sm font-semibold transition',
+      isActive ? 'bg-paper text-accent' : 'text-slate-700 hover:bg-paper hover:text-navy',
     ].join(' ');
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-950">
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div className="min-h-screen text-slate-950">
+      <header className="sticky top-0 z-50 border-b border-line bg-white/92 backdrop-blur">
         <div className="container-shell flex h-16 items-center justify-between gap-6">
           <Link
             to="/"
-            className="flex min-w-0 flex-col"
+            className="flex min-w-0 items-center gap-3"
             onClick={() => setIsMenuOpen(false)}
             aria-label={`${site.name} home`}
           >
-            <span className="truncate text-base font-semibold text-slate-950">{site.name}</span>
-            <span className="hidden truncate text-xs text-slate-500 sm:block">{site.tagline}</span>
+            <img src="/arkode-labs-logo.png" alt="" className="h-10 w-10 rounded-md object-cover" />
+            <span className="min-w-0">
+              <span className="block truncate text-base font-bold text-navy">{site.name}</span>
+              <span className="hidden truncate text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:block">
+                Code. Build. Solve.
+              </span>
+            </span>
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
@@ -40,15 +45,15 @@ export function Layout() {
           <div className="hidden items-center gap-3 md:flex">
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-800"
+              className="inline-flex items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-navy"
             >
-              Start a project
+              Konsultasi
             </Link>
           </div>
 
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-white text-navy transition hover:bg-paper md:hidden"
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={isMenuOpen}
             aria-controls={mobileMenuId}
@@ -60,7 +65,7 @@ export function Layout() {
 
         <div
           id={mobileMenuId}
-          className={`${isMenuOpen ? 'block' : 'hidden'} border-t border-slate-200 bg-white md:hidden`}
+          className={`${isMenuOpen ? 'block' : 'hidden'} border-t border-line bg-white md:hidden`}
         >
           <nav className="container-shell flex flex-col gap-1 py-4" aria-label="Mobile navigation">
             {navItems.map((item) => (
@@ -75,10 +80,10 @@ export function Layout() {
             ))}
             <Link
               to="/contact"
-              className="mt-2 inline-flex items-center justify-center rounded-md bg-teal-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-teal-800"
+              className="mt-2 inline-flex items-center justify-center rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:bg-navy"
               onClick={() => setIsMenuOpen(false)}
             >
-              Start a project
+              Konsultasi
             </Link>
           </nav>
         </div>
@@ -88,26 +93,27 @@ export function Layout() {
         <Outlet />
       </main>
 
-      <footer className="border-t border-slate-200 bg-white">
+      <footer className="border-t border-line bg-white">
         <div className="container-shell grid gap-8 py-10 sm:grid-cols-[1fr_auto] sm:items-start">
           <div>
-            <p className="text-base font-semibold text-slate-950">{site.name}</p>
+            <p className="text-base font-bold text-navy">{site.name}</p>
+            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-accent">Code. Build. Solve.</p>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">{site.tagline}</p>
             <div className="mt-4 flex flex-col gap-1 text-sm text-slate-600 sm:flex-row sm:gap-4">
-              <a className="hover:text-teal-800" href={`mailto:${site.email}`}>
+              <a className="hover:text-accent" href={`mailto:${site.email}`}>
                 {site.email}
               </a>
-              <a className="hover:text-teal-800" href={`tel:${site.phone.replace(/\s/g, '')}`}>
+              <a className="hover:text-accent" href={`tel:${site.phone.replace(/\s/g, '')}`}>
                 {site.phone}
               </a>
             </div>
           </div>
 
           <nav className="flex gap-4 text-sm font-medium text-slate-600" aria-label="Footer navigation">
-            <Link className="hover:text-teal-800" to="/privacy">
+            <Link className="hover:text-accent" to="/privacy">
               Privacy
             </Link>
-            <Link className="hover:text-teal-800" to="/terms">
+            <Link className="hover:text-accent" to="/terms">
               Terms
             </Link>
           </nav>

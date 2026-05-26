@@ -7,7 +7,9 @@ import { site } from '../content/site';
 
 const projectTypes = [
   'Company profile website',
+  'Landing page campaign',
   'Custom web app',
+  'Dashboard / internal system',
   'Maintenance / retainer',
   'Belum yakin',
 ];
@@ -34,12 +36,13 @@ export function Contact() {
     <>
       <Seo
         title={`Contact | ${site.name}`}
-        description="Hubungi NusaCode Studio untuk diskusi website bisnis, custom web app, atau maintenance project."
+        description="Hubungi Arkode Labs untuk diskusi website, web app, dashboard, UI/UX, atau maintenance project."
       />
 
       <section className="py-16 sm:py-24">
         <div className="container-shell max-w-4xl">
-          <h1 className="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Contact</p>
+          <h1 className="mt-4 text-4xl font-semibold leading-tight text-navy sm:text-5xl">
             Ceritakan kebutuhan digital yang ingin Anda rapikan.
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
@@ -70,7 +73,7 @@ export function Contact() {
                   type="text"
                   required
                   autoComplete="name"
-                  className="mt-2 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink transition placeholder:text-slate-400 focus:border-teal-700"
+                  className="mt-2 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink transition placeholder:text-slate-400 focus:border-accent"
                   placeholder="Nama Anda"
                 />
               </div>
@@ -84,7 +87,7 @@ export function Contact() {
                   name="company"
                   type="text"
                   autoComplete="organization"
-                  className="mt-2 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink transition placeholder:text-slate-400 focus:border-teal-700"
+                  className="mt-2 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink transition placeholder:text-slate-400 focus:border-accent"
                   placeholder="Nama perusahaan"
                 />
               </div>
@@ -99,7 +102,7 @@ export function Contact() {
                   type="text"
                   required
                   autoComplete="email"
-                  className="mt-2 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink transition placeholder:text-slate-400 focus:border-teal-700"
+                  className="mt-2 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink transition placeholder:text-slate-400 focus:border-accent"
                   placeholder="email@domain.com atau nomor WA"
                 />
               </div>
@@ -113,7 +116,7 @@ export function Contact() {
                   name="projectType"
                   required
                   defaultValue=""
-                  className="mt-2 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink transition focus:border-teal-700"
+                  className="mt-2 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink transition focus:border-accent"
                 >
                   <option value="" disabled>
                     Pilih jenis project
@@ -136,7 +139,7 @@ export function Contact() {
                 name="message"
                 required
                 rows={6}
-                className="mt-2 w-full resize-y rounded-md border border-line bg-white px-4 py-3 text-sm leading-6 text-ink transition placeholder:text-slate-400 focus:border-teal-700"
+                className="mt-2 w-full resize-y rounded-md border border-line bg-white px-4 py-3 text-sm leading-6 text-ink transition placeholder:text-slate-400 focus:border-accent"
                 placeholder="Ceritakan tujuan, timeline, dan gambaran scope yang Anda bayangkan."
               />
             </div>
@@ -148,36 +151,36 @@ export function Contact() {
 
             <button
               type="submit"
-              className="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-800"
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy"
             >
               Kirim pesan
               <Send aria-hidden="true" size={18} />
             </button>
           </form>
 
-          <aside className="rounded-lg border border-line bg-slate-50 p-6 shadow-sm">
-            <h2 className="text-2xl font-semibold text-ink">Kontak langsung</h2>
+          <aside className="rounded-lg border border-line bg-paper p-6 shadow-sm">
+            <h2 className="text-2xl font-semibold text-navy">Kontak langsung</h2>
             <p className="mt-3 leading-7 text-slate-600">
               Lebih nyaman lewat email atau telepon? Hubungi kami lewat kanal berikut.
             </p>
 
             <div className="mt-6 space-y-4">
               <div>
-                <h3 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-teal-700">
+                <h3 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-accent">
                   <Mail aria-hidden="true" size={16} />
                   Email
                 </h3>
-                <a className="mt-2 block text-slate-700 hover:text-teal-800" href={`mailto:${site.email}`}>
+                <a className="mt-2 block text-slate-700 hover:text-accent" href={`mailto:${site.email}`}>
                   {site.email}
                 </a>
               </div>
 
               <div>
-                <h3 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-teal-700">
+                <h3 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-accent">
                   <Phone aria-hidden="true" size={16} />
                   Phone
                 </h3>
-                <a className="mt-2 block text-slate-700 hover:text-teal-800" href={`tel:${site.phone.replace(/\s/g, '')}`}>
+                <a className="mt-2 block text-slate-700 hover:text-accent" href={`tel:${site.phone.replace(/\s/g, '')}`}>
                   {site.phone}
                 </a>
               </div>
