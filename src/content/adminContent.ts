@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 
 export type ManagedCaseStudy = {
   id: string;
+  slug: string;
   title: string;
   label: string;
   summary: string;
   stack: string[];
   timeline: string;
   result: string;
+  visual: 'website' | 'dashboard' | 'process' | 'maintenance';
+  status: 'Draft' | 'Published';
   demoUrl?: string;
 };
 
@@ -23,6 +26,8 @@ export type ManagedContent = {
   caseStudies: ManagedCaseStudy[];
   posts: ManagedPost[];
 };
+
+type StoredCaseStudy = Partial<ManagedCaseStudy> & Pick<ManagedCaseStudy, 'id' | 'title'>;
 
 export const adminContentKey = 'arkode-labs-admin-content';
 const adminContentUpdatedEvent = 'arkode-labs-admin-content-updated';
@@ -49,7 +54,14 @@ export function readManagedContent(): ManagedContent {
   try {
     const parsed = JSON.parse(rawContent) as Partial<ManagedContent>;
     return {
-      caseStudies: Array.isArray(parsed.caseStudies) ? parsed.caseStudies : [],
+      caseStudies: Array.isArray(parsed.caseStudies)
+        ? (parsed.caseStudies as StoredCaseStudy[]).map((item) => ({
+            ...item,
+            slug: item.slug ?? item.id,
+            visual: item.visual ?? 'website',
+            status: item.status ?? 'Published',
+          })) as ManagedCaseStudy[]
+        : [],
       posts: Array.isArray(parsed.posts) ? parsed.posts : [],
     };
   } catch {

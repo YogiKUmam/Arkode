@@ -115,6 +115,39 @@ export const caseStudies = [
     demoUrl: '/case-studies/operations-dashboard-prototype/demo',
     visual: 'dashboard',
   },
+  {
+    title: 'Campaign Landing Page System',
+    slug: 'campaign-landing-page-system',
+    label: 'Landing Page',
+    summary: 'Struktur landing page untuk campaign promosi dengan CTA, benefit, social proof, dan tracking-ready flow.',
+    stack: ['React', 'Landing copy', 'Analytics-ready'],
+    timeline: '2 minggu',
+    result: 'Tim marketing memiliki halaman campaign yang lebih fokus untuk mengumpulkan inquiry dan mengukur performa.',
+    demoUrl: '/case-studies/campaign-landing-page-system/demo',
+    visual: 'website',
+  },
+  {
+    title: 'Education Portal MVP',
+    slug: 'education-portal-mvp',
+    label: 'MVP Concept',
+    summary: 'Prototype portal pembelajaran untuk mengelola kelas, materi, member, dan progres pengguna.',
+    stack: ['React', 'Role-based flow', 'Dashboard UI'],
+    timeline: '6 minggu',
+    result: 'Founder mendapat MVP awal yang bisa dipakai untuk validasi operasional dan kebutuhan pengguna.',
+    demoUrl: '/case-studies/education-portal-mvp/demo',
+    visual: 'dashboard',
+  },
+  {
+    title: 'Maintenance Growth Retainer',
+    slug: 'maintenance-growth-retainer',
+    label: 'Monthly Support',
+    summary: 'Retainer untuk menjaga website tetap aman, cepat, dan berkembang melalui update serta improvement berkala.',
+    stack: ['Monitoring', 'QA', 'Content update'],
+    timeline: 'Bulanan',
+    result: 'Website tetap stabil setelah launch dan backlog improvement bisa dikelola lebih rapi.',
+    demoUrl: '/case-studies/maintenance-growth-retainer/demo',
+    visual: 'maintenance',
+  },
 ];
 
 export const pricingModels = [
@@ -168,6 +201,18 @@ export const posts = [
     slug: 'audit-website-bisnis',
     excerpt:
       'Kerangka sederhana untuk menilai apakah website sudah menjelaskan nilai, bukti, dan langkah berikutnya.',
+  },
+  {
+    title: 'Alur Discovery yang Membuat Scope Project Lebih Jelas',
+    slug: 'alur-discovery-scope-project',
+    excerpt:
+      'Cara menyusun kebutuhan, prioritas, risiko, dan output agar development tidak melebar tanpa arah.',
+  },
+  {
+    title: 'Apa Saja yang Perlu Disiapkan Sebelum Membuat Dashboard Internal',
+    slug: 'persiapan-dashboard-internal',
+    excerpt:
+      'Daftar data, role, proses, dan laporan yang sebaiknya dipetakan sebelum membangun dashboard.',
   },
 ];
 

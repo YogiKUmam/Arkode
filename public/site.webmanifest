@@ -1,0 +1,16 @@
+{
+  "name": "Arkode Labs",
+  "short_name": "Arkode",
+  "description": "Software house untuk website, web app, dashboard, dan sistem digital.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f9fd",
+  "theme_color": "#06122b",
+  "icons": [
+    {
+      "src": "/arkode-labs-logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}

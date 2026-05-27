@@ -5,12 +5,15 @@ import { CTA } from '../components/CTA';
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
 import { ProductMockup } from '../components/VisualMockups';
-import { useManagedContent } from '../content/adminContent';
+import { ManagedCaseStudy, useManagedContent } from '../content/adminContent';
 import { caseStudies, site } from '../content/site';
 
 export function CaseStudies() {
   const managedContent = useManagedContent();
-  const visibleCaseStudies = [...caseStudies, ...managedContent.caseStudies];
+  const visibleCaseStudies = [
+    ...caseStudies,
+    ...managedContent.caseStudies.filter((item) => item.status === 'Published'),
+  ];
 
   return (
     <>
@@ -35,7 +38,9 @@ export function CaseStudies() {
       <Section eyebrow="Project examples" title="Bukti awal yang ringkas dan mudah dievaluasi." className="bg-white">
         <div className="grid gap-5 md:grid-cols-2">
           {visibleCaseStudies.map((item) => {
-            const visualVariant = 'visual' in item && item.visual === 'dashboard' ? 'dashboard' : 'website';
+            const visualVariant = ('visual' in item
+              ? item.visual
+              : 'website') as ManagedCaseStudy['visual'];
             const demoUrl = 'demoUrl' in item ? item.demoUrl : undefined;
 
             return (
