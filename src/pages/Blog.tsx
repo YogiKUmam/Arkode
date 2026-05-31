@@ -17,7 +17,8 @@ export function Blog() {
         description="Insight praktis tentang website bisnis, custom web app, kredibilitas digital, dan konversi."
       />
 
-      <section className="py-16 sm:py-24">
+      <section className="relative overflow-hidden py-16 sm:py-24">
+        <div className="absolute inset-x-0 top-0 -z-10 h-[460px] tech-grid-bg opacity-55" aria-hidden="true" />
         <div className="container-shell max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Insights</p>
           <h1 className="mt-4 text-4xl font-semibold leading-tight text-navy sm:text-5xl">
@@ -32,11 +33,14 @@ export function Blog() {
 
       <Section eyebrow="Latest posts" title="Preview artikel yang bisa menjadi titik awal audit." className="bg-white">
         <div className="grid gap-5 md:grid-cols-3">
-          {visiblePosts.map((post) => (
-            <article key={post.slug} className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm">
+          {visiblePosts.map((post, index) => (
+            <article key={post.slug} className="group flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-accent/50 hover:shadow-panel">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+                Insight {String(index + 1).padStart(2, '0')}
+              </p>
               <h3 className="text-xl font-semibold text-navy">{post.title}</h3>
               <p className="mt-4 flex-1 leading-7 text-slate-600">{post.excerpt}</p>
-              <p className="mt-6 text-sm font-semibold text-accent">Artikel preview</p>
+              <p className="mt-6 text-sm font-semibold text-accent transition group-hover:text-navy">Artikel preview</p>
             </article>
           ))}
         </div>

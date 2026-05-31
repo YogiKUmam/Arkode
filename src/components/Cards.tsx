@@ -14,7 +14,8 @@ type SimpleCardProps = {
 
 export function ServiceCard({ title, summary, outcome, deliverables }: ServiceCardProps) {
   return (
-    <article className="rounded-lg border border-line bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-panel">
+    <article className="group rounded-lg border border-line bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-accent/50 hover:shadow-panel">
+      <div className="mb-5 h-1 w-12 rounded-full bg-gradient-to-r from-accent to-cyan transition group-hover:w-20" />
       <h3 className="text-xl font-semibold text-navy">{title}</h3>
       <p className="mt-3 leading-7 text-slate-600">{summary}</p>
       <p className="mt-5 rounded-md bg-paper p-4 font-medium leading-7 text-navy">{outcome}</p>
@@ -32,7 +33,7 @@ export function ServiceCard({ title, summary, outcome, deliverables }: ServiceCa
 
 export function SimpleCard({ title, text }: SimpleCardProps) {
   return (
-    <article className="rounded-lg border border-line bg-white p-6 shadow-sm">
+    <article className="rounded-lg border border-line bg-white p-6 shadow-sm transition hover:border-accent/50 hover:shadow-panel">
       <h3 className="text-lg font-semibold text-navy">{title}</h3>
       <p className="mt-3 leading-7 text-slate-600">{text}</p>
     </article>

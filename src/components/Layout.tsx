@@ -17,7 +17,7 @@ export function Layout() {
 
   return (
     <div className="min-h-screen text-slate-950">
-      <header className="sticky top-0 z-50 border-b border-line bg-white/92 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-line bg-white/88 backdrop-blur-xl">
         <div className="container-shell flex h-16 items-center justify-between gap-6">
           <Link
             to="/"
@@ -94,10 +94,15 @@ export function Layout() {
       </main>
 
       <footer className="border-t border-line bg-white">
-        <div className="container-shell grid gap-8 py-10 sm:grid-cols-[1fr_auto] sm:items-start">
+        <div className="container-shell grid gap-8 py-12 lg:grid-cols-[1fr_auto] lg:items-start">
           <div>
-            <p className="text-base font-bold text-navy">{site.name}</p>
-            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-accent">Code. Build. Solve.</p>
+            <div className="flex items-center gap-3">
+              <img src={site.logo} alt="" className="h-10 w-10 rounded-md object-cover" />
+              <div>
+                <p className="text-base font-bold text-navy">{site.name}</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-accent">Code. Build. Solve.</p>
+              </div>
+            </div>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">{site.tagline}</p>
             <div className="mt-4 flex flex-col gap-1 text-sm text-slate-600 sm:flex-row sm:gap-4">
               <a className="hover:text-accent" href={`mailto:${site.email}`}>
@@ -109,7 +114,7 @@ export function Layout() {
             </div>
           </div>
 
-          <nav className="flex gap-4 text-sm font-medium text-slate-600" aria-label="Footer navigation">
+          <nav className="flex flex-wrap gap-4 text-sm font-medium text-slate-600" aria-label="Footer navigation">
             <Link className="hover:text-accent" to="/privacy">
               Privacy
             </Link>

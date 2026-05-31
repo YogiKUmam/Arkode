@@ -39,16 +39,24 @@ export function Contact() {
         description="Hubungi Arkode Labs untuk diskusi website, web app, dashboard, UI/UX, atau maintenance project."
       />
 
-      <section className="py-16 sm:py-24">
-        <div className="container-shell max-w-4xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Contact</p>
-          <h1 className="mt-4 text-4xl font-semibold leading-tight text-navy sm:text-5xl">
-            Ceritakan kebutuhan digital yang ingin Anda rapikan.
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-slate-600">
-            Bagikan konteks singkat tentang bisnis, tujuan project, dan prioritas terdekat. Kami
-            akan membalas dengan langkah awal yang realistis.
-          </p>
+      <section className="relative overflow-hidden py-16 sm:py-24">
+        <div className="absolute inset-x-0 top-0 -z-10 h-[460px] tech-grid-bg opacity-55" aria-hidden="true" />
+        <div className="container-shell grid gap-8 lg:grid-cols-[1fr_0.42fr] lg:items-end">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Contact</p>
+            <h1 className="mt-4 text-4xl font-semibold leading-tight text-navy sm:text-5xl">
+              Ceritakan kebutuhan digital yang ingin Anda rapikan.
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Bagikan konteks singkat tentang bisnis, tujuan project, dan prioritas terdekat. Kami
+              akan membalas dengan langkah awal yang realistis.
+            </p>
+          </div>
+          <div className="rounded-lg border border-line bg-white p-5 shadow-panel">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Response signal</p>
+            <p className="mt-3 text-3xl font-semibold text-navy">1 hari kerja</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">Untuk reply awal, scope check, dan rekomendasi langkah berikutnya.</p>
+          </div>
         </div>
       </section>
 
@@ -158,9 +166,9 @@ export function Contact() {
             </button>
           </form>
 
-          <aside className="rounded-lg border border-line bg-paper p-6 shadow-sm">
-            <h2 className="text-2xl font-semibold text-navy">Kontak langsung</h2>
-            <p className="mt-3 leading-7 text-slate-600">
+          <aside className="rounded-lg border border-line bg-navy p-6 text-white shadow-panel">
+            <h2 className="text-2xl font-semibold text-white">Kontak langsung</h2>
+            <p className="mt-3 leading-7 text-slate-300">
               Lebih nyaman lewat email atau telepon? Hubungi kami lewat kanal berikut.
             </p>
 
@@ -170,7 +178,7 @@ export function Contact() {
                   <Mail aria-hidden="true" size={16} />
                   Email
                 </h3>
-                <a className="mt-2 block text-slate-700 hover:text-accent" href={`mailto:${site.email}`}>
+                <a className="mt-2 block text-slate-200 hover:text-cyan" href={`mailto:${site.email}`}>
                   {site.email}
                 </a>
               </div>
@@ -180,7 +188,7 @@ export function Contact() {
                   <Phone aria-hidden="true" size={16} />
                   Phone
                 </h3>
-                <a className="mt-2 block text-slate-700 hover:text-accent" href={`tel:${site.phone.replace(/\s/g, '')}`}>
+                <a className="mt-2 block text-slate-200 hover:text-cyan" href={`tel:${site.phone.replace(/\s/g, '')}`}>
                   {site.phone}
                 </a>
               </div>

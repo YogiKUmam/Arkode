@@ -19,8 +19,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    linear-gradient(135deg, rgba(37, 99, 235, 0.11), rgba(34, 211, 238, 0.08) 34%, rgba(255, 255, 255, 0) 58%),
-    linear-gradient(180deg, #eff6ff 0%, #ffffff 540px, #f8fbff 100%);
+    linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(34, 211, 238, 0.07) 34%, rgba(255, 255, 255, 0) 58%),
+    linear-gradient(180deg, #eff6ff 0%, #ffffff 620px, #f8fbff 100%);
 }
 
 a {
@@ -43,4 +43,24 @@ textarea {
 .container-shell {
   width: min(1120px, calc(100% - 32px));
   margin-inline: auto;
+}
+
+.tech-grid-bg {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.10) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.glass-panel {
+  border: 1px solid rgba(207, 224, 245, 0.88);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 28px 80px rgba(11, 16, 32, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.premium-band {
+  background:
+    linear-gradient(135deg, rgba(11, 16, 32, 0.98), rgba(15, 23, 42, 0.96)),
+    #0b1020;
 }
