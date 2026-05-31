@@ -1,6 +1,6 @@
 # Arkode Labs Production Readiness
 
-This project is ready as a polished frontend with Supabase integration support. When `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are present, the admin reads and writes content through Supabase and uses Supabase Auth. Without those variables, it falls back to localStorage for local preview.
+This project is ready as a polished frontend prototype. Before using the admin area in production, replace browser-only storage with a real backend and protect the editor with server-side authentication.
 
 ## Recommended Backend Path
 
@@ -11,9 +11,35 @@ Use Supabase for the fastest production setup:
 - Row Level Security so public users can only read published content.
 - Storage bucket for case study and blog images.
 
-The SQL schema is available in `supabase/schema.sql`. Run it in the Supabase SQL editor before deploying with Supabase env vars.
+Suggested tables:
 
-The included RLS policies allow public visitors to read only `Published` content. Authenticated Supabase users can manage draft and published rows. Keep public signups disabled unless you add an admin allowlist.
+```sql
+create table case_studies (
+  id uuid primary key default gen_random_uuid(),
+  slug text unique not null,
+  title text not null,
+  label text not null,
+  summary text not null,
+  stack text[] not null default '{}',
+  timeline text not null,
+  result text not null,
+  visual text not null check (visual in ('website', 'dashboard', 'process', 'maintenance')),
+  status text not null check (status in ('Draft', 'Published')),
+  demo_url text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table posts (
+  id uuid primary key default gen_random_uuid(),
+  slug text unique not null,
+  title text not null,
+  excerpt text not null,
+  status text not null check (status in ('Draft', 'Published')),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+```
 
 Environment variables for Vercel or Cloudflare Pages:
 
@@ -23,21 +49,12 @@ VITE_SUPABASE_ANON_KEY=
 VITE_ADMIN_PASSCODE=
 ```
 
-`VITE_ADMIN_PASSCODE` is only used by the local fallback mode. In Supabase mode, `/admin` uses email/password login through Supabase Auth.
-
-## Supabase Setup
-
-1. Create a Supabase project.
-2. Run `supabase/schema.sql` in the SQL editor.
-3. In Authentication, disable open public signups for production.
-4. Create the admin user from Supabase Dashboard > Authentication > Users.
-5. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` to `.env.local` and the deployment provider.
-6. Restart the dev server and sign in at `/admin` with the Supabase user.
+The current `/admin` passcode gate is intentionally lightweight for local demo use. It is not a replacement for Supabase Auth, Strapi roles, Sanity authentication, or a custom server session.
 
 ## Deployment Checklist
 
 - Set the production domain, then update `public/sitemap.xml`, `public/robots.txt`, and Open Graph URLs if the domain is not `arkodelabs.id`.
-- Add Supabase env vars in the deployment provider.
+- Add `VITE_ADMIN_PASSCODE` for demo deployments.
 - Deploy to Vercel or Cloudflare Pages with `npm run build`.
 - Submit `https://your-domain/sitemap.xml` in Google Search Console.
 - Replace prototype case studies with approved real client work or clearly label concept projects.

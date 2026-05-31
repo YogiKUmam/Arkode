@@ -1,19 +1,16 @@
 import { Edit3, FileText, Layers3, LockKeyhole, LogOut, Plus, Trash2 } from 'lucide-react';
-import { FormEvent, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useMemo, useState } from 'react';
 
 import { Seo } from '../components/Seo';
 import {
   ManagedCaseStudy,
   ManagedPost,
   createContentId,
-  deleteManagedCaseStudy,
-  deleteManagedPost,
-  saveManagedCaseStudy,
-  saveManagedPost,
+  readManagedContent,
   useManagedContent,
+  writeManagedContent,
 } from '../content/adminContent';
 import { site } from '../content/site';
-import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
 type CaseStudyForm = {
   title: string;
@@ -83,47 +80,19 @@ export function Admin() {
   const [editingCaseId, setEditingCaseId] = useState<string | null>(null);
   const [editingPostId, setEditingPostId] = useState<string | null>(null);
   const [passcode, setPasscode] = useState('');
-  const [adminEmail, setAdminEmail] = useState('');
   const [authError, setAuthError] = useState('');
-  const [saveError, setSaveError] = useState('');
-  const [isSaving, setIsSaving] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(() => {
     if (import.meta.env.MODE === 'test') {
       return true;
     }
 
-    return !isSupabaseConfigured && typeof window !== 'undefined' && window.sessionStorage.getItem(adminSessionKey) === 'true';
+    return typeof window !== 'undefined' && window.sessionStorage.getItem(adminSessionKey) === 'true';
   });
 
   const publishedPosts = useMemo(
     () => content.posts.filter((post) => post.status === 'Published').length,
     [content.posts],
   );
-
-  useEffect(() => {
-    if (!isSupabaseConfigured || !supabase || import.meta.env.MODE === 'test') {
-      return;
-    }
-
-    let isMounted = true;
-
-    supabase.auth.getSession().then(({ data }) => {
-      if (isMounted) {
-        setIsAuthorized(Boolean(data.session));
-      }
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAuthorized(Boolean(session));
-    });
-
-    return () => {
-      isMounted = false;
-      subscription.unsubscribe();
-    };
-  }, []);
 
   function updateCaseForm(field: keyof CaseStudyForm, value: string) {
     setCaseForm((current) => ({ ...current, [field]: value }));
@@ -133,25 +102,8 @@ export function Admin() {
     setBlogForm((current) => ({ ...current, [field]: value }));
   }
 
-  async function unlockAdmin(event: FormEvent<HTMLFormElement>) {
+  function unlockAdmin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    if (isSupabaseConfigured && supabase) {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: adminEmail,
-        password: passcode,
-      });
-
-      if (error) {
-        setAuthError(error.message);
-        return;
-      }
-
-      setIsAuthorized(true);
-      setAuthError('');
-      setPasscode('');
-      return;
-    }
 
     if (passcode === adminPasscode) {
       window.sessionStorage.setItem(adminSessionKey, 'true');
@@ -164,19 +116,15 @@ export function Admin() {
     setAuthError('Passcode admin belum sesuai.');
   }
 
-  async function lockAdmin() {
-    if (isSupabaseConfigured && supabase) {
-      await supabase.auth.signOut();
-    } else {
-      window.sessionStorage.removeItem(adminSessionKey);
-    }
-
+  function lockAdmin() {
+    window.sessionStorage.removeItem(adminSessionKey);
     setIsAuthorized(false);
   }
 
-  async function saveCaseStudy(event: FormEvent<HTMLFormElement>) {
+  function saveCaseStudy(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const currentContent = readManagedContent();
     const caseStudy: ManagedCaseStudy = {
       id: editingCaseId ?? createContentId('case'),
       slug: slugify(caseForm.slug || caseForm.title),
@@ -194,23 +142,19 @@ export function Admin() {
       demoUrl: caseForm.demoUrl.trim() || undefined,
     };
 
-    try {
-      setIsSaving(true);
-      setSaveError('');
-      await saveManagedCaseStudy(caseStudy);
-      await content.refresh();
-      setCaseForm(emptyCaseStudyForm);
-      setEditingCaseId(null);
-    } catch (error) {
-      setSaveError(error instanceof Error ? error.message : 'Gagal menyimpan case study.');
-    } finally {
-      setIsSaving(false);
-    }
+    const nextCaseStudies = editingCaseId
+      ? currentContent.caseStudies.map((item) => (item.id === editingCaseId ? caseStudy : item))
+      : [...currentContent.caseStudies, caseStudy];
+
+    writeManagedContent({ ...currentContent, caseStudies: nextCaseStudies });
+    setCaseForm(emptyCaseStudyForm);
+    setEditingCaseId(null);
   }
 
-  async function saveBlogPost(event: FormEvent<HTMLFormElement>) {
+  function saveBlogPost(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const currentContent = readManagedContent();
     const post: ManagedPost = {
       id: editingPostId ?? createContentId('post'),
       title: blogForm.title.trim(),
@@ -219,18 +163,13 @@ export function Admin() {
       status: blogForm.status,
     };
 
-    try {
-      setIsSaving(true);
-      setSaveError('');
-      await saveManagedPost(post);
-      await content.refresh();
-      setBlogForm(emptyBlogForm);
-      setEditingPostId(null);
-    } catch (error) {
-      setSaveError(error instanceof Error ? error.message : 'Gagal menyimpan blog post.');
-    } finally {
-      setIsSaving(false);
-    }
+    const nextPosts = editingPostId
+      ? currentContent.posts.map((item) => (item.id === editingPostId ? post : item))
+      : [...currentContent.posts, post];
+
+    writeManagedContent({ ...currentContent, posts: nextPosts });
+    setBlogForm(emptyBlogForm);
+    setEditingPostId(null);
   }
 
   function editCaseStudy(item: ManagedCaseStudy) {
@@ -259,24 +198,20 @@ export function Admin() {
     });
   }
 
-  async function deleteCaseStudy(id: string) {
-    try {
-      setSaveError('');
-      await deleteManagedCaseStudy(id);
-      await content.refresh();
-    } catch (error) {
-      setSaveError(error instanceof Error ? error.message : 'Gagal menghapus case study.');
-    }
+  function deleteCaseStudy(id: string) {
+    const currentContent = readManagedContent();
+    writeManagedContent({
+      ...currentContent,
+      caseStudies: currentContent.caseStudies.filter((item) => item.id !== id),
+    });
   }
 
-  async function deletePost(id: string) {
-    try {
-      setSaveError('');
-      await deleteManagedPost(id);
-      await content.refresh();
-    } catch (error) {
-      setSaveError(error instanceof Error ? error.message : 'Gagal menghapus blog post.');
-    }
+  function deletePost(id: string) {
+    const currentContent = readManagedContent();
+    writeManagedContent({
+      ...currentContent,
+      posts: currentContent.posts.filter((item) => item.id !== id),
+    });
   }
 
   if (!isAuthorized) {
@@ -303,26 +238,12 @@ export function Admin() {
               </div>
 
               <p className="mt-5 leading-7 text-slate-600">
-                {isSupabaseConfigured
-                  ? 'Admin ini memakai Supabase Auth. Gunakan akun admin yang sudah dibuat di Supabase.'
-                  : 'Admin ini memakai passcode ringan untuk prototipe lokal. Isi env Supabase untuk auth produksi.'}
+                Admin ini memakai passcode ringan untuk prototipe lokal. Untuk produksi, gunakan auth backend
+                seperti Supabase Auth atau Strapi roles.
               </p>
 
-              {isSupabaseConfigured && (
-                <label className="mt-6 grid gap-2 text-sm font-semibold text-ink">
-                  Admin email
-                  <input
-                    required
-                    type="email"
-                    value={adminEmail}
-                    onChange={(event) => setAdminEmail(event.target.value)}
-                    className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent"
-                  />
-                </label>
-              )}
-
               <label className="mt-6 grid gap-2 text-sm font-semibold text-ink">
-                {isSupabaseConfigured ? 'Admin password' : 'Admin passcode'}
+                Admin passcode
                 <input
                   required
                   type="password"
@@ -401,10 +322,8 @@ export function Admin() {
             <StatCard title="Custom case studies" value={String(content.caseStudies.length)} text="Konten portfolio yang kamu tambahkan sendiri." />
             <StatCard title="Blog posts" value={String(content.posts.length)} text="Draft dan published post dari dashboard." />
             <StatCard title="Published posts" value={String(publishedPosts)} text="Artikel yang tampil di halaman Blog publik." />
-            <StatCard title="Storage" value={content.source} text={isSupabaseConfigured ? 'Tersambung ke Supabase.' : 'Local fallback sampai env Supabase diisi.'} />
+            <StatCard title="Storage" value="Prototype" text="Local untuk demo, siap diganti backend produksi." />
           </div>
-          {content.error && <p className="mt-4 text-sm font-semibold text-red-700">{content.error}</p>}
-          {saveError && <p className="mt-4 text-sm font-semibold text-red-700">{saveError}</p>}
         </div>
       </section>
 
@@ -465,7 +384,7 @@ export function Admin() {
                 <input value={caseForm.demoUrl} onChange={(event) => updateCaseForm('demoUrl', event.target.value)} placeholder="/case-studies/nama-project/demo atau https://..." className="rounded-md border border-line px-4 py-3 font-normal focus:border-accent" />
               </label>
             </div>
-            <button disabled={isSaving} type="submit" className="mt-6 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy disabled:cursor-not-allowed disabled:opacity-60">
+            <button type="submit" className="mt-6 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy">
               <Plus size={18} aria-hidden="true" />
               {editingCaseId ? 'Update case study' : 'Save case study'}
             </button>
@@ -497,7 +416,7 @@ export function Admin() {
                 </select>
               </label>
             </div>
-            <button disabled={isSaving} type="submit" className="mt-6 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy disabled:cursor-not-allowed disabled:opacity-60">
+            <button type="submit" className="mt-6 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy">
               <Plus size={18} aria-hidden="true" />
               {editingPostId ? 'Update blog post' : 'Save blog post'}
             </button>
@@ -510,8 +429,7 @@ export function Admin() {
           <div>
             <h2 className="text-2xl font-semibold text-navy">Saved case studies</h2>
             <div className="mt-5 grid gap-4">
-              {content.isLoading && <p className="text-slate-600">Memuat case study...</p>}
-              {!content.isLoading && content.caseStudies.length === 0 && <p className="text-slate-600">Belum ada case study tambahan.</p>}
+              {content.caseStudies.length === 0 && <p className="text-slate-600">Belum ada case study tambahan.</p>}
               {content.caseStudies.map((item) => (
                 <article key={item.id} className="rounded-lg border border-line bg-white p-5 shadow-sm">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{item.status} / {item.label}</p>
@@ -527,7 +445,7 @@ export function Admin() {
                     <button type="button" onClick={() => editCaseStudy(item)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-navy hover:border-accent">
                       <Edit3 size={16} aria-hidden="true" /> Edit
                     </button>
-                    <button type="button" onClick={() => void deleteCaseStudy(item.id)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-slate-600 hover:border-red-300 hover:text-red-700">
+                    <button type="button" onClick={() => deleteCaseStudy(item.id)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-slate-600 hover:border-red-300 hover:text-red-700">
                       <Trash2 size={16} aria-hidden="true" /> Delete
                     </button>
                   </div>
@@ -539,8 +457,7 @@ export function Admin() {
           <div>
             <h2 className="text-2xl font-semibold text-navy">Saved blog posts</h2>
             <div className="mt-5 grid gap-4">
-              {content.isLoading && <p className="text-slate-600">Memuat blog...</p>}
-              {!content.isLoading && content.posts.length === 0 && <p className="text-slate-600">Belum ada blog tambahan.</p>}
+              {content.posts.length === 0 && <p className="text-slate-600">Belum ada blog tambahan.</p>}
               {content.posts.map((item) => (
                 <article key={item.id} className="rounded-lg border border-line bg-white p-5 shadow-sm">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{item.status}</p>
@@ -550,7 +467,7 @@ export function Admin() {
                     <button type="button" onClick={() => editPost(item)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-navy hover:border-accent">
                       <Edit3 size={16} aria-hidden="true" /> Edit
                     </button>
-                    <button type="button" onClick={() => void deletePost(item.id)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-slate-600 hover:border-red-300 hover:text-red-700">
+                    <button type="button" onClick={() => deletePost(item.id)} className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-slate-600 hover:border-red-300 hover:text-red-700">
                       <Trash2 size={16} aria-hidden="true" /> Delete
                     </button>
                   </div>
