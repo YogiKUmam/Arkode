@@ -94,6 +94,19 @@ export const processSteps = [
 
 export const caseStudies = [
   {
+    title: 'Nusantara Language Academy',
+    slug: 'nusantara-language-academy',
+    label: 'Education MVP',
+    summary:
+      'Website pembelajaran Bahasa Indonesia interaktif untuk staf kedutaan, keluarga pendamping, dan pendatang baru dengan modul skenario nyata, kuis, progres belajar, sertifikat, dan dashboard admin prototype.',
+    stack: ['React', 'Vite', 'Custom CSS', 'Web Speech API'],
+    timeline: '8 minggu',
+    result:
+      'MVP siap demo untuk validasi platform pembelajaran berbasis skenario diplomatik dan kehidupan sehari-hari di Indonesia.',
+    demoUrl: 'https://nusantara-language-academy.vercel.app/',
+    visual: 'dashboard',
+  },
+  {
     title: 'Company Profile Website Relaunch',
     slug: 'business-website-relaunch',
     label: 'Concept Project',

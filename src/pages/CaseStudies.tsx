@@ -8,6 +8,27 @@ import { ProductMockup } from '../components/VisualMockups';
 import { ManagedCaseStudy, useManagedContent } from '../content/adminContent';
 import { caseStudies, site } from '../content/site';
 
+function LiveDemoButton({ demoUrl }: { demoUrl: string }) {
+  const className =
+    'mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-navy';
+
+  if (/^https?:\/\//.test(demoUrl)) {
+    return (
+      <a href={demoUrl} target="_blank" rel="noreferrer" className={className}>
+        Live Demo
+        <ArrowRight aria-hidden="true" size={16} />
+      </a>
+    );
+  }
+
+  return (
+    <Link to={demoUrl} className={className}>
+      Live Demo
+      <ArrowRight aria-hidden="true" size={16} />
+    </Link>
+  );
+}
+
 export function CaseStudies() {
   const managedContent = useManagedContent();
   const visibleCaseStudies = [
@@ -76,13 +97,7 @@ export function CaseStudies() {
                 </div>
               </div>
               {'demoUrl' in featuredCase && featuredCase.demoUrl && (
-                <Link
-                  to={featuredCase.demoUrl}
-                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-navy"
-                >
-                  Live Demo
-                  <ArrowRight aria-hidden="true" size={16} />
-                </Link>
+                <LiveDemoButton demoUrl={featuredCase.demoUrl} />
               )}
             </div>
           </article>
@@ -131,13 +146,7 @@ export function CaseStudies() {
               </div>
 
               {demoUrl && (
-                <Link
-                  to={demoUrl}
-                  className="mt-5 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-navy"
-                >
-                  Live Demo
-                  <ArrowRight aria-hidden="true" size={16} />
-                </Link>
+                <LiveDemoButton demoUrl={demoUrl} />
               )}
             </article>
           );
