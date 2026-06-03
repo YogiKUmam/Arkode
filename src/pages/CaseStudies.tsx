@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { CTA } from '../components/CTA';
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
-import { ProductMockup } from '../components/VisualMockups';
+import { ProductMockup, WebsitePreview } from '../components/VisualMockups';
 import { ManagedCaseStudy, useManagedContent } from '../content/adminContent';
 import { caseStudies, site } from '../content/site';
 
@@ -39,6 +39,8 @@ export function CaseStudies() {
   const featuredVisual = featuredCase
     ? (('visual' in featuredCase ? featuredCase.visual : 'website') as ManagedCaseStudy['visual'])
     : 'website';
+  const featuredImageUrl = featuredCase && 'imageUrl' in featuredCase ? featuredCase.imageUrl : undefined;
+  const featuredOverview = featuredCase && 'overview' in featuredCase ? featuredCase.overview : undefined;
 
   return (
     <>
@@ -52,7 +54,7 @@ export function CaseStudies() {
         <div className="container-shell grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Case studies</p>
-            <h1 className="mt-4 text-4xl font-semibold leading-tight text-navy sm:text-5xl">
+            <h1 className="mt-4 text-3xl font-semibold leading-tight text-navy sm:text-5xl">
               Case studies yang menunjukkan cara kami menyusun masalah, scope, dan hasil.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
@@ -62,11 +64,19 @@ export function CaseStudies() {
           </div>
           {featuredCase && (
             <div className="glass-panel rounded-lg p-5">
-              <ProductMockup
-                variant={featuredVisual}
-                title={featuredCase.title}
-                eyebrow="Featured showcase"
-              />
+              {featuredImageUrl ? (
+                <WebsitePreview
+                  src={featuredImageUrl}
+                  alt={`Tampilan website ${featuredCase.title}`}
+                  eyebrow="Featured live preview"
+                />
+              ) : (
+                <ProductMockup
+                  variant={featuredVisual}
+                  title={featuredCase.title}
+                  eyebrow="Featured showcase"
+                />
+              )}
             </div>
           )}
         </div>
@@ -75,17 +85,33 @@ export function CaseStudies() {
       <Section eyebrow="Project examples" title="Bukti awal yang ringkas dan mudah dievaluasi." className="bg-white">
         {featuredCase && (
           <article className="mb-6 grid gap-6 rounded-lg border border-line bg-white p-6 shadow-panel lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
-            <ProductMockup
-              variant={featuredVisual}
-              title={featuredCase.title}
-              eyebrow={featuredCase.label}
-            />
+            {featuredImageUrl ? (
+              <WebsitePreview
+                src={featuredImageUrl}
+                alt={`Screenshot halaman utama ${featuredCase.title}`}
+                eyebrow={featuredCase.label}
+              />
+            ) : (
+              <ProductMockup
+                variant={featuredVisual}
+                title={featuredCase.title}
+                eyebrow={featuredCase.label}
+              />
+            )}
             <div>
               <span className="rounded-md bg-paper px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-accent">
                 Featured / {featuredCase.label}
               </span>
               <h2 className="mt-5 text-3xl font-semibold text-navy">{featuredCase.title}</h2>
               <p className="mt-4 leading-8 text-slate-600">{featuredCase.summary}</p>
+              {featuredOverview && (
+                <div className="mt-5 rounded-md border border-line bg-paper p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+                    Tentang website
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-slate-700">{featuredOverview}</p>
+                </div>
+              )}
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-md bg-paper p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Timeline</p>
@@ -109,14 +135,24 @@ export function CaseStudies() {
               ? item.visual
               : 'website') as ManagedCaseStudy['visual'];
             const demoUrl = 'demoUrl' in item ? item.demoUrl : undefined;
+            const imageUrl = 'imageUrl' in item ? item.imageUrl : undefined;
+            const overview = 'overview' in item ? item.overview : undefined;
 
             return (
             <article key={item.title} className="rounded-lg border border-line bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-accent/50 hover:shadow-panel">
-              <ProductMockup
-                variant={visualVariant}
-                title={visualVariant === 'dashboard' ? 'Dashboard preview' : 'Website preview'}
-                eyebrow={item.label}
-              />
+              {imageUrl ? (
+                <WebsitePreview
+                  src={imageUrl}
+                  alt={`Preview website ${item.title}`}
+                  eyebrow={item.label}
+                />
+              ) : (
+                <ProductMockup
+                  variant={visualVariant}
+                  title={visualVariant === 'dashboard' ? 'Dashboard preview' : 'Website preview'}
+                  eyebrow={item.label}
+                />
+              )}
               <div className="flex flex-wrap items-center gap-3">
                 <span className="rounded-md bg-paper px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-accent">
                   {item.label}
@@ -126,6 +162,11 @@ export function CaseStudies() {
 
               <h3 className="mt-5 text-2xl font-semibold text-navy">{item.title}</h3>
               <p className="mt-3 leading-7 text-slate-600">{item.summary}</p>
+              {overview && (
+                <p className="mt-4 rounded-md border border-line bg-paper p-4 text-sm leading-7 text-slate-700">
+                  {overview}
+                </p>
+              )}
 
               <div className="mt-5 flex flex-wrap gap-2" aria-label={`${item.title} technology stack`}>
                 {item.stack.map((technology) => (

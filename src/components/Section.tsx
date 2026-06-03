@@ -20,7 +20,7 @@ export function Section({ eyebrow, title, intro, children, className = '' }: Sec
               </p>
             )}
             {title && (
-              <h2 className="mt-3 text-3xl font-semibold text-navy sm:text-4xl">{title}</h2>
+              <h2 className="mt-3 text-2xl font-semibold leading-tight text-navy sm:text-4xl">{title}</h2>
             )}
             {intro && <p className="mt-4 text-lg leading-8 text-slate-600">{intro}</p>}
           </div>

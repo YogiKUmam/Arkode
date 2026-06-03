@@ -41,8 +41,14 @@ textarea {
 }
 
 .container-shell {
-  width: min(1120px, calc(100% - 32px));
+  width: min(1120px, calc(100% - 48px));
   margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .container-shell {
+    width: min(1120px, calc(100% - 32px));
+  }
 }
 
 .tech-grid-bg {

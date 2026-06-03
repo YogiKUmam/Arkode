@@ -6,6 +6,12 @@ type ProductMockupProps = {
   eyebrow?: string;
 };
 
+type WebsitePreviewProps = {
+  src: string;
+  alt: string;
+  eyebrow?: string;
+};
+
 const variantContent = {
   website: {
     icon: Code2,
@@ -34,14 +40,14 @@ export function ProductMockup({ variant = 'dashboard', title, eyebrow = 'Preview
   const Icon = content.icon;
 
   return (
-    <div className="overflow-hidden rounded-lg border border-line bg-white shadow-panel">
+    <div className="min-w-0 max-w-full overflow-hidden rounded-lg border border-line bg-white shadow-panel">
       <div className="flex items-center justify-between border-b border-line bg-navy px-4 py-3 text-white">
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-cyan" />
           <span className="h-2.5 w-2.5 rounded-full bg-accent" />
           <span className="h-2.5 w-2.5 rounded-full bg-white/70" />
         </div>
-        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">{eyebrow}</span>
+        <span className="max-w-[70%] truncate text-right text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">{eyebrow}</span>
       </div>
 
       <div className="grid gap-5 p-5">
@@ -85,5 +91,21 @@ export function ProductMockup({ variant = 'dashboard', title, eyebrow = 'Preview
         </div>
       </div>
     </div>
+  );
+}
+
+export function WebsitePreview({ src, alt, eyebrow = 'Live website preview' }: WebsitePreviewProps) {
+  return (
+    <figure className="min-w-0 max-w-full overflow-hidden rounded-lg border border-line bg-white shadow-panel">
+      <div className="flex items-center justify-between border-b border-line bg-navy px-4 py-3 text-white">
+        <div className="flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-cyan" />
+          <span className="h-2.5 w-2.5 rounded-full bg-accent" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/70" />
+        </div>
+        <span className="max-w-[70%] truncate text-right text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">{eyebrow}</span>
+      </div>
+      <img src={src} alt={alt} className="block aspect-[16/10] w-full object-cover object-top" loading="lazy" />
+    </figure>
   );
 }

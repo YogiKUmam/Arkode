@@ -104,6 +104,9 @@ export const caseStudies = [
     result:
       'MVP siap demo untuk validasi platform pembelajaran berbasis skenario diplomatik dan kehidupan sehari-hari di Indonesia.',
     demoUrl: 'https://nusantara-language-academy.vercel.app/',
+    imageUrl: '/case-studies/nusantara-language-academy.png',
+    overview:
+      'Nusantara Language Academy adalah platform belajar Bahasa Indonesia untuk konteks embassy life, rutinitas keluarga, dan kehidupan sehari-hari. Website ini menyediakan jalur belajar berbasis skenario, placement quiz, modul course, latihan listening/speaking/writing, sertifikat, serta dashboard admin prototype untuk memantau progres peserta.',
     visual: 'dashboard',
   },
   {
@@ -115,6 +118,9 @@ export const caseStudies = [
     timeline: '3 minggu',
     result: 'Struktur penawaran lebih mudah dipahami dan siap mendukung kampanye lead generation.',
     demoUrl: '/case-studies/business-website-relaunch/demo',
+    imageUrl: '/case-studies/business-website-relaunch.png',
+    overview:
+      'Demo ini memperlihatkan struktur company profile yang menonjolkan positioning, layanan, bukti awal, dan CTA. Cocok untuk bisnis yang ingin website profilnya lebih mudah dipahami calon klien dan siap dipakai untuk lead generation.',
     visual: 'website',
   },
   {
@@ -126,6 +132,9 @@ export const caseStudies = [
     timeline: '5 minggu',
     result: 'Tim mendapat gambaran workflow digital yang lebih terukur sebelum pembangunan penuh.',
     demoUrl: '/case-studies/operations-dashboard-prototype/demo',
+    imageUrl: '/case-studies/operations-dashboard-prototype.png',
+    overview:
+      'Demo dashboard ini menunjukkan bagaimana lead pipeline, task tracking, role-based access, dan laporan operasional bisa dirancang sebelum masuk pembangunan penuh.',
     visual: 'dashboard',
   },
   {
@@ -137,6 +146,9 @@ export const caseStudies = [
     timeline: '2 minggu',
     result: 'Tim marketing memiliki halaman campaign yang lebih fokus untuk mengumpulkan inquiry dan mengukur performa.',
     demoUrl: '/case-studies/campaign-landing-page-system/demo',
+    imageUrl: '/case-studies/campaign-landing-page-system.png',
+    overview:
+      'Demo ini menampilkan landing page campaign dengan offer block, segmentasi audiens, jalur konversi, dan struktur tracking agar performa promosi lebih mudah dievaluasi.',
     visual: 'website',
   },
   {
@@ -148,6 +160,9 @@ export const caseStudies = [
     timeline: '6 minggu',
     result: 'Founder mendapat MVP awal yang bisa dipakai untuk validasi operasional dan kebutuhan pengguna.',
     demoUrl: '/case-studies/education-portal-mvp/demo',
+    imageUrl: '/case-studies/education-portal-mvp.png',
+    overview:
+      'Demo portal edukasi ini menggambarkan katalog course, progress member, role dashboard, dan scope MVP untuk validasi platform pembelajaran sebelum investasi produk lebih besar.',
     visual: 'dashboard',
   },
   {
@@ -159,6 +174,9 @@ export const caseStudies = [
     timeline: 'Bulanan',
     result: 'Website tetap stabil setelah launch dan backlog improvement bisa dikelola lebih rapi.',
     demoUrl: '/case-studies/maintenance-growth-retainer/demo',
+    imageUrl: '/case-studies/maintenance-growth-retainer.png',
+    overview:
+      'Demo retainer ini memperlihatkan support queue, health check, backlog improvement, dan laporan bulanan agar maintenance website berjalan terukur setelah launch.',
     visual: 'maintenance',
   },
 ];

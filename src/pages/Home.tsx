@@ -5,7 +5,7 @@ import { ServiceCard, SimpleCard } from '../components/Cards';
 import { CTA } from '../components/CTA';
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
-import { ProductMockup } from '../components/VisualMockups';
+import { ProductMockup, WebsitePreview } from '../components/VisualMockups';
 import { ManagedCaseStudy } from '../content/adminContent';
 import { caseStudies, faqs, problems, processSteps, services, site } from '../content/site';
 
@@ -41,6 +41,8 @@ export function Home() {
   const featuredService = services.find((service) => service.title === 'Web Application Development') ?? services[0];
   const supportingServices = services.filter((service) => service.title !== featuredService.title).slice(0, 4);
   const featuredVisual = featuredCase.visual as ManagedCaseStudy['visual'];
+  const featuredImageUrl = 'imageUrl' in featuredCase ? featuredCase.imageUrl : undefined;
+  const featuredOverview = 'overview' in featuredCase ? featuredCase.overview : undefined;
 
   return (
     <>
@@ -186,10 +188,23 @@ export function Home() {
         <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
           {featuredCase && (
             <article className="rounded-lg border border-line bg-white p-6 shadow-panel">
-              <ProductMockup variant={featuredVisual} title={featuredCase.title} eyebrow="Featured case" />
+              {featuredImageUrl ? (
+                <WebsitePreview
+                  src={featuredImageUrl}
+                  alt={`Tampilan website ${featuredCase.title}`}
+                  eyebrow="Featured live preview"
+                />
+              ) : (
+                <ProductMockup variant={featuredVisual} title={featuredCase.title} eyebrow="Featured case" />
+              )}
               <p className="mt-6 text-sm font-semibold uppercase tracking-[0.16em] text-accent">{featuredCase.label}</p>
               <h3 className="mt-3 text-3xl font-semibold text-navy">{featuredCase.title}</h3>
               <p className="mt-4 leading-8 text-slate-600">{featuredCase.summary}</p>
+              {featuredOverview && (
+                <p className="mt-4 rounded-md border border-line bg-paper p-4 text-sm leading-7 text-slate-700">
+                  {featuredOverview}
+                </p>
+              )}
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-md bg-paper p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Timeline</p>
