@@ -8,6 +8,16 @@
   "theme_color": "#06122b",
   "icons": [
     {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
       "src": "/arkode-labs-logo.png",
       "sizes": "1024x1024",
       "type": "image/png"
