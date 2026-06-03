@@ -29,7 +29,6 @@ export const navItems = [
   { label: 'About', href: '/about' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Admin', href: '/admin' },
   { label: 'Contact', href: '/contact' },
 ];
 
