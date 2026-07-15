@@ -6,6 +6,7 @@ import { Blog } from './pages/Blog';
 import { CaseStudyDemo } from './pages/CaseStudyDemo';
 import { CaseStudies } from './pages/CaseStudies';
 import { Contact } from './pages/Contact';
+import { Estimator } from './pages/Estimator';
 import { Home } from './pages/Home';
 import { Privacy, Terms } from './pages/Legal';
 import { Pricing } from './pages/Pricing';
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/case-studies/:slug/demo" element={<CaseStudyDemo />} />
         <Route path="/about" element={<About />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/estimator" element={<Estimator />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/admin" element={<Navigate to="/" replace />} />
         <Route path="/contact" element={<Contact />} />

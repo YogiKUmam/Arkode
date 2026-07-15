@@ -45,4 +45,16 @@ describe('App routes', () => {
       }),
     ).toBeInTheDocument();
   });
+
+  it('renders the project estimator page', () => {
+    renderRoute('/estimator');
+
+    expect(
+      screen.getByRole('heading', {
+        level: 1,
+        name: /hitung gambaran scope sebelum mulai konsultasi/i,
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/rekomendasi awal/i)).toBeInTheDocument();
+  });
 });

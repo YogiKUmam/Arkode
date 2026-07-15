@@ -26,12 +26,12 @@ export function CTA() {
             Konsultasi proyek
             <ArrowRight aria-hidden="true" size={18} />
           </Link>
-          <a
-            href={site.whatsapp}
+          <Link
+            to="/estimator"
             className="inline-flex items-center justify-center rounded-md border border-white/20 px-5 py-3 font-semibold text-white transition hover:border-cyan hover:text-cyan"
           >
-            WhatsApp langsung
-          </a>
+            Hitung scope dulu
+          </Link>
         </div>
         <p className="text-sm text-slate-400 lg:col-span-2">
           Email: {site.email}. Respons biasanya dalam 1 hari kerja.

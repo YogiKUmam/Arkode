@@ -28,6 +28,7 @@ export const navItems = [
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'About', href: '/about' },
   { label: 'Pricing', href: '/pricing' },
+  { label: 'Estimator', href: '/estimator' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];

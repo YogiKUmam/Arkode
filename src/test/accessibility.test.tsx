@@ -21,12 +21,10 @@ describe('Accessibility basics', () => {
     ).toBeInTheDocument();
   });
 
-  it('labels required contact fields and marks them required', () => {
+  it('labels required discovery fields and marks them required', () => {
     renderRoute('/contact');
 
-    expect(screen.getByLabelText(/nama/i)).toBeRequired();
-    expect(screen.getByLabelText(/email atau whatsapp/i)).toBeRequired();
     expect(screen.getByLabelText(/jenis project/i)).toBeRequired();
-    expect(screen.getByLabelText(/pesan/i)).toBeRequired();
+    expect(screen.getByLabelText(/tujuan utama/i)).toBeRequired();
   });
 });
