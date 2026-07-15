@@ -120,7 +120,9 @@ export const caseStudies = [
     timeline: 'Full-stack build',
     result:
       'Pengguna mendapat panel hasil analisis, riwayat pemeriksaan, dan laporan PDF/TXT untuk mengevaluasi CV terhadap lowongan.',
+    demoUrl: 'https://ai-resume-analyzer-sigma-coral.vercel.app/',
     repoUrl: 'https://github.com/YogiKUmam/Ai-resume-analyzer',
+    imageUrl: '/case-studies/ai-resume-analyzer.png',
     overview:
       'AI Resume Analyzer memperlihatkan kemampuan Arkode dalam membangun produk AI end-to-end: upload CV, ekstraksi teks PDF, scoring terhadap job description, analisis keyword, rekomendasi perbaikan, dan output laporan yang bisa digunakan kandidat untuk iterasi CV.',
     visual: 'dashboard',
@@ -135,7 +137,9 @@ export const caseStudies = [
     timeline: 'Website sprint',
     result:
       'Bisnis export-import memiliki company profile digital yang lebih kredibel untuk menjelaskan layanan, membangun trust, dan mengarahkan calon klien ke inquiry.',
+    demoUrl: 'https://eksport-import-bali.vercel.app/',
     repoUrl: 'https://github.com/YogiKUmam/eksport-import-bali',
+    imageUrl: '/case-studies/eksport-import-bali.png',
     overview:
       'Eksport Import Bali menampilkan pendekatan website company profile untuk sektor jasa perdagangan: pesan utama yang langsung, halaman yang mudah dipindai, visual brand yang profesional, serta alur CTA yang cocok untuk calon klien lokal maupun internasional.',
     visual: 'website',
@@ -151,6 +155,7 @@ export const caseStudies = [
     result:
       'Pengguna mendapatkan assistant produktivitas personal yang menerjemahkan input bebas menjadi rencana kerja yang lebih jelas dan bisa ditindaklanjuti.',
     repoUrl: 'https://github.com/YogiKUmam/FocusMate-AI',
+    imageUrl: '/case-studies/focusmate-ai.png',
     overview:
       'FocusMate AI adalah contoh eksplorasi produk AI yang fokus pada workflow sehari-hari: percakapan natural, pemetaan prioritas, pengingat konteks, dan rekomendasi aksi berikutnya untuk membantu pengguna tetap bergerak.',
     visual: 'dashboard',
@@ -165,7 +170,9 @@ export const caseStudies = [
     timeline: 'Prototype build',
     result:
       'Konsep learning planner tersusun sebagai produk digital yang bisa dikembangkan menjadi platform pendamping belajar mandiri.',
+    demoUrl: 'https://step-up-dev-yogi.vercel.app/',
     repoUrl: 'https://github.com/YogiKUmam/StepUp-Ai-LearningPlanner',
+    imageUrl: '/case-studies/stepup-ai-learning-planner.png',
     overview:
       'StepUp AI Learning Planner menunjukkan arah produk edukasi yang membantu pengguna mengubah tujuan besar menjadi rencana belajar yang lebih kecil, terukur, dan mudah diikuti dari hari ke hari.',
     visual: 'dashboard',
@@ -197,7 +204,9 @@ export const caseStudies = [
     timeline: 'Personal site',
     result:
       'Profil developer tersusun dalam satu halaman publik yang lebih mudah dipakai untuk networking, lamaran, atau showcase kemampuan.',
+    demoUrl: 'https://yogi-builds.vercel.app/',
     repoUrl: 'https://github.com/YogiKUmam/Portofolio',
+    imageUrl: '/case-studies/developer-portfolio.png',
     overview:
       'Developer Portfolio mewakili kebutuhan umum personal branding: menyusun identitas, skill, project, dan kontak menjadi halaman yang singkat, jelas, dan mudah dikembangkan seiring bertambahnya pengalaman.',
     visual: 'website',
