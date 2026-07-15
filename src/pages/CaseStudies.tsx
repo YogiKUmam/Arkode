@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { CTA } from '../components/CTA';
@@ -10,7 +10,7 @@ import { caseStudies, site } from '../content/site';
 
 function LiveDemoButton({ demoUrl }: { demoUrl: string }) {
   const className =
-    'mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-navy';
+    'inline-flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-navy';
 
   if (/^https?:\/\//.test(demoUrl)) {
     return (
@@ -29,6 +29,20 @@ function LiveDemoButton({ demoUrl }: { demoUrl: string }) {
   );
 }
 
+function SourceCodeButton({ repoUrl }: { repoUrl: string }) {
+  return (
+    <a
+      href={repoUrl}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center justify-center gap-2 rounded-md border border-line bg-white px-4 py-2 text-sm font-semibold text-navy transition hover:border-accent hover:text-accent"
+    >
+      <Github aria-hidden="true" size={16} />
+      Source Code
+    </a>
+  );
+}
+
 export function CaseStudies() {
   const managedContent = useManagedContent();
   const visibleCaseStudies = [
@@ -41,6 +55,8 @@ export function CaseStudies() {
     : 'website';
   const featuredImageUrl = featuredCase && 'imageUrl' in featuredCase ? featuredCase.imageUrl : undefined;
   const featuredOverview = featuredCase && 'overview' in featuredCase ? featuredCase.overview : undefined;
+  const featuredDemoUrl = featuredCase && 'demoUrl' in featuredCase ? featuredCase.demoUrl : undefined;
+  const featuredRepoUrl = featuredCase && 'repoUrl' in featuredCase ? featuredCase.repoUrl : undefined;
 
   return (
     <>
@@ -122,9 +138,10 @@ export function CaseStudies() {
                   <p className="mt-2 font-semibold text-accent">{featuredCase.result}</p>
                 </div>
               </div>
-              {'demoUrl' in featuredCase && featuredCase.demoUrl && (
-                <LiveDemoButton demoUrl={featuredCase.demoUrl} />
-              )}
+              <div className="mt-6 flex flex-wrap gap-3">
+                {featuredDemoUrl && <LiveDemoButton demoUrl={featuredDemoUrl} />}
+                {featuredRepoUrl && <SourceCodeButton repoUrl={featuredRepoUrl} />}
+              </div>
             </div>
           </article>
         )}
@@ -135,6 +152,7 @@ export function CaseStudies() {
               ? item.visual
               : 'website') as ManagedCaseStudy['visual'];
             const demoUrl = 'demoUrl' in item ? item.demoUrl : undefined;
+            const repoUrl = 'repoUrl' in item ? item.repoUrl : undefined;
             const imageUrl = 'imageUrl' in item ? item.imageUrl : undefined;
             const overview = 'overview' in item ? item.overview : undefined;
 
@@ -186,9 +204,10 @@ export function CaseStudies() {
                 <p className="mt-2 font-medium leading-7 text-accent">{item.result}</p>
               </div>
 
-              {demoUrl && (
-                <LiveDemoButton demoUrl={demoUrl} />
-              )}
+              <div className="mt-6 flex flex-wrap gap-3">
+                {demoUrl && <LiveDemoButton demoUrl={demoUrl} />}
+                {repoUrl && <SourceCodeButton repoUrl={repoUrl} />}
+              </div>
             </article>
           );
           })}

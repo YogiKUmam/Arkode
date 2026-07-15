@@ -104,80 +104,103 @@ export const caseStudies = [
     result:
       'MVP siap demo untuk validasi platform pembelajaran berbasis skenario diplomatik dan kehidupan sehari-hari di Indonesia.',
     demoUrl: 'https://nusantara-language-academy.vercel.app/',
+    repoUrl: 'https://github.com/YogiKUmam/Nusantara-Language-Academy',
     imageUrl: '/case-studies/nusantara-language-academy.png',
     overview:
       'Nusantara Language Academy adalah platform belajar Bahasa Indonesia untuk konteks embassy life, rutinitas keluarga, dan kehidupan sehari-hari. Website ini menyediakan jalur belajar berbasis skenario, placement quiz, modul course, latihan listening/speaking/writing, sertifikat, serta dashboard admin prototype untuk memantau progres peserta.',
     visual: 'dashboard',
   },
   {
-    title: 'Company Profile Website Relaunch',
-    slug: 'business-website-relaunch',
-    label: 'Concept Project',
-    summary: 'Rancang ulang website profil bisnis agar positioning, layanan, bukti, dan CTA lebih jelas.',
-    stack: ['React', 'Tailwind', 'SEO basics'],
-    timeline: '3 minggu',
-    result: 'Struktur penawaran lebih mudah dipahami dan siap mendukung kampanye lead generation.',
-    demoUrl: '/case-studies/business-website-relaunch/demo',
-    imageUrl: '/case-studies/business-website-relaunch.png',
+    title: 'AI Resume Analyzer',
+    slug: 'ai-resume-analyzer',
+    label: 'AI Product',
+    summary:
+      'Aplikasi full-stack untuk membandingkan CV PDF dengan job description, membaca keyword, menghitung match score, mengecek struktur ATS, dan menghasilkan laporan evaluasi.',
+    stack: ['FastAPI', 'React', 'TypeScript', 'Vite', 'AI Advisor'],
+    timeline: 'Full-stack build',
+    result:
+      'Pengguna mendapat panel hasil analisis, riwayat pemeriksaan, dan laporan PDF/TXT untuk mengevaluasi CV terhadap lowongan.',
+    repoUrl: 'https://github.com/YogiKUmam/Ai-resume-analyzer',
     overview:
-      'Demo ini memperlihatkan struktur company profile yang menonjolkan positioning, layanan, bukti awal, dan CTA. Cocok untuk bisnis yang ingin website profilnya lebih mudah dipahami calon klien dan siap dipakai untuk lead generation.',
-    visual: 'website',
-  },
-  {
-    title: 'Operations Dashboard Prototype',
-    slug: 'operations-dashboard-prototype',
-    label: 'Sample Engagement',
-    summary: 'Prototype dashboard untuk memindahkan tracking pekerjaan dari spreadsheet ke sistem internal.',
-    stack: ['React', 'Node-ready API', 'Role-based flow'],
-    timeline: '5 minggu',
-    result: 'Tim mendapat gambaran workflow digital yang lebih terukur sebelum pembangunan penuh.',
-    demoUrl: '/case-studies/operations-dashboard-prototype/demo',
-    imageUrl: '/case-studies/operations-dashboard-prototype.png',
-    overview:
-      'Demo dashboard ini menunjukkan bagaimana lead pipeline, task tracking, role-based access, dan laporan operasional bisa dirancang sebelum masuk pembangunan penuh.',
+      'AI Resume Analyzer memperlihatkan kemampuan Arkode dalam membangun produk AI end-to-end: upload CV, ekstraksi teks PDF, scoring terhadap job description, analisis keyword, rekomendasi perbaikan, dan output laporan yang bisa digunakan kandidat untuk iterasi CV.',
     visual: 'dashboard',
   },
   {
-    title: 'Campaign Landing Page System',
-    slug: 'campaign-landing-page-system',
-    label: 'Landing Page',
-    summary: 'Struktur landing page untuk campaign promosi dengan CTA, benefit, social proof, dan tracking-ready flow.',
-    stack: ['React', 'Landing copy', 'Analytics-ready'],
-    timeline: '2 minggu',
-    result: 'Tim marketing memiliki halaman campaign yang lebih fokus untuk mengumpulkan inquiry dan mengukur performa.',
-    demoUrl: '/case-studies/campaign-landing-page-system/demo',
-    imageUrl: '/case-studies/campaign-landing-page-system.png',
+    title: 'Eksport Import Bali',
+    slug: 'eksport-import-bali',
+    label: 'Business Website',
+    summary:
+      'Website profesional untuk bisnis export-import Bali dengan struktur layanan, positioning brand, dan CTA yang lebih siap untuk kebutuhan promosi.',
+    stack: ['React', 'Tailwind CSS', 'Responsive UI'],
+    timeline: 'Website sprint',
+    result:
+      'Bisnis export-import memiliki company profile digital yang lebih kredibel untuk menjelaskan layanan, membangun trust, dan mengarahkan calon klien ke inquiry.',
+    repoUrl: 'https://github.com/YogiKUmam/eksport-import-bali',
     overview:
-      'Demo ini menampilkan landing page campaign dengan offer block, segmentasi audiens, jalur konversi, dan struktur tracking agar performa promosi lebih mudah dievaluasi.',
+      'Eksport Import Bali menampilkan pendekatan website company profile untuk sektor jasa perdagangan: pesan utama yang langsung, halaman yang mudah dipindai, visual brand yang profesional, serta alur CTA yang cocok untuk calon klien lokal maupun internasional.',
     visual: 'website',
   },
   {
-    title: 'Education Portal MVP',
-    slug: 'education-portal-mvp',
-    label: 'MVP Concept',
-    summary: 'Prototype portal pembelajaran untuk mengelola kelas, materi, member, dan progres pengguna.',
-    stack: ['React', 'Role-based flow', 'Dashboard UI'],
-    timeline: '6 minggu',
-    result: 'Founder mendapat MVP awal yang bisa dipakai untuk validasi operasional dan kebutuhan pengguna.',
-    demoUrl: '/case-studies/education-portal-mvp/demo',
-    imageUrl: '/case-studies/education-portal-mvp.png',
+    title: 'FocusMate AI',
+    slug: 'focusmate-ai',
+    label: 'AI Productivity Assistant',
+    summary:
+      'Chatbot AI hybrid untuk membantu pengguna menyusun prioritas, rencana fokus, habit, deadline, dan next action dari pesan bahasa alami.',
+    stack: ['JavaScript', 'AI Chatbot', 'Productivity UX'],
+    timeline: 'Product prototype',
+    result:
+      'Pengguna mendapatkan assistant produktivitas personal yang menerjemahkan input bebas menjadi rencana kerja yang lebih jelas dan bisa ditindaklanjuti.',
+    repoUrl: 'https://github.com/YogiKUmam/FocusMate-AI',
     overview:
-      'Demo portal edukasi ini menggambarkan katalog course, progress member, role dashboard, dan scope MVP untuk validasi platform pembelajaran sebelum investasi produk lebih besar.',
+      'FocusMate AI adalah contoh eksplorasi produk AI yang fokus pada workflow sehari-hari: percakapan natural, pemetaan prioritas, pengingat konteks, dan rekomendasi aksi berikutnya untuk membantu pengguna tetap bergerak.',
     visual: 'dashboard',
   },
   {
-    title: 'Maintenance Growth Retainer',
-    slug: 'maintenance-growth-retainer',
-    label: 'Monthly Support',
-    summary: 'Retainer untuk menjaga website tetap aman, cepat, dan berkembang melalui update serta improvement berkala.',
-    stack: ['Monitoring', 'QA', 'Content update'],
-    timeline: 'Bulanan',
-    result: 'Website tetap stabil setelah launch dan backlog improvement bisa dikelola lebih rapi.',
-    demoUrl: '/case-studies/maintenance-growth-retainer/demo',
-    imageUrl: '/case-studies/maintenance-growth-retainer.png',
+    title: 'StepUp AI Learning Planner',
+    slug: 'stepup-ai-learning-planner',
+    label: 'Learning Planner',
+    summary:
+      'Planner pembelajaran berbasis AI untuk membantu pengguna menyusun target belajar, rencana bertahap, dan jalur peningkatan skill yang lebih terarah.',
+    stack: ['HTML', 'Learning UX', 'AI Planning Concept'],
+    timeline: 'Prototype build',
+    result:
+      'Konsep learning planner tersusun sebagai produk digital yang bisa dikembangkan menjadi platform pendamping belajar mandiri.',
+    repoUrl: 'https://github.com/YogiKUmam/StepUp-Ai-LearningPlanner',
     overview:
-      'Demo retainer ini memperlihatkan support queue, health check, backlog improvement, dan laporan bulanan agar maintenance website berjalan terukur setelah launch.',
-    visual: 'maintenance',
+      'StepUp AI Learning Planner menunjukkan arah produk edukasi yang membantu pengguna mengubah tujuan besar menjadi rencana belajar yang lebih kecil, terukur, dan mudah diikuti dari hari ke hari.',
+    visual: 'dashboard',
+  },
+  {
+    title: 'Arkode Labs Website',
+    slug: 'arkode-labs-website',
+    label: 'Software House Website',
+    summary:
+      'Website resmi Arkode Labs dengan halaman layanan, case studies, pricing, blog, contact wizard, estimator project, SEO basics, dan visual brand yang konsisten.',
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    timeline: 'Iterative launch',
+    result:
+      'Arkode memiliki pusat identitas digital yang siap menampilkan layanan, portfolio, proses kerja, dan jalur konsultasi untuk calon klien.',
+    demoUrl: 'https://arkodelabs.vercel.app',
+    repoUrl: 'https://github.com/YogiKUmam/Arkode',
+    imageUrl: '/case-studies/arkode-labs.png',
+    overview:
+      'Website Arkode Labs menjadi showcase utama brand: dari positioning software house, daftar layanan, portfolio project, artikel awal, sampai project estimator yang membantu calon klien memahami scope sebelum konsultasi.',
+    visual: 'website',
+  },
+  {
+    title: 'Developer Portfolio',
+    slug: 'developer-portfolio',
+    label: 'Personal Website',
+    summary:
+      'Portfolio personal untuk menampilkan profil, kemampuan teknis, pengalaman, dan kumpulan project dalam format website yang mudah dibagikan.',
+    stack: ['CSS', 'Responsive UI', 'Portfolio Content'],
+    timeline: 'Personal site',
+    result:
+      'Profil developer tersusun dalam satu halaman publik yang lebih mudah dipakai untuk networking, lamaran, atau showcase kemampuan.',
+    repoUrl: 'https://github.com/YogiKUmam/Portofolio',
+    overview:
+      'Developer Portfolio mewakili kebutuhan umum personal branding: menyusun identitas, skill, project, dan kontak menjadi halaman yang singkat, jelas, dan mudah dikembangkan seiring bertambahnya pengalaman.',
+    visual: 'website',
   },
 ];
 
