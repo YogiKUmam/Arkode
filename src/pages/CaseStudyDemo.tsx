@@ -4,7 +4,8 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 
 import { ProductMockup } from '../components/VisualMockups';
 import { Seo } from '../components/Seo';
-import { caseStudies, site } from '../content/site';
+import { useLanguage } from '../content/LanguageContext';
+import { useContent } from '../content/site';
 
 const demoContent = {
   'business-website-relaunch': {
@@ -179,7 +180,47 @@ const demoContent = {
   },
 };
 
+const demoShellCopy = {
+  en: {
+    seoDescription: 'Live demo preview for',
+    back: 'Back to case studies',
+    previewEyebrow: 'Live demo preview',
+    scopeEyebrow: 'Demo scope',
+    scopeTitle: 'What is shown in this demo?',
+    interactiveEyebrow: 'Interactive preview',
+    interactiveTitle: 'Clickable section simulation.',
+    interactiveIntro: 'Click a row on the right to see how demo scope can be prioritized before build.',
+    selected: 'Selected',
+    ready: 'Ready',
+    review: 'In review',
+    ctaEyebrow: 'Ready to discuss',
+    ctaTitle: 'Want a demo like this for your business?',
+    ctaText: 'Arkode Labs can help translate your needs into scope, visual previews, and a delivery plan.',
+    ctaButton: 'Project consultation',
+  },
+  id: {
+    seoDescription: 'Live demo preview untuk',
+    back: 'Kembali ke case studies',
+    previewEyebrow: 'Live demo preview',
+    scopeEyebrow: 'Demo scope',
+    scopeTitle: 'Apa yang ditampilkan di demo ini?',
+    interactiveEyebrow: 'Interactive preview',
+    interactiveTitle: 'Simulasi bagian yang bisa diklik.',
+    interactiveIntro: 'Klik baris di kanan untuk melihat bagaimana scope demo bisa diprioritaskan sebelum build.',
+    selected: 'Selected',
+    ready: 'Ready',
+    review: 'In review',
+    ctaEyebrow: 'Ready to discuss',
+    ctaTitle: 'Ingin demo seperti ini untuk bisnis Anda?',
+    ctaText: 'Arkode Labs bisa membantu menerjemahkan kebutuhan menjadi scope, visual preview, dan delivery plan.',
+    ctaButton: 'Konsultasi proyek',
+  },
+};
+
 export function CaseStudyDemo() {
+  const { language } = useLanguage();
+  const { caseStudies, site } = useContent();
+  const copy = demoShellCopy[language];
   const { slug } = useParams();
   const demo = slug ? demoContent[slug as keyof typeof demoContent] : undefined;
   const caseStudy = caseStudies.find((item) => item.slug === slug);
@@ -192,9 +233,9 @@ export function CaseStudyDemo() {
 
     return demo.sections.map((section, index) => ({
       ...section,
-      status: index === activeSection ? 'Selected' : index % 2 === 0 ? 'Ready' : 'In review',
+      status: index === activeSection ? copy.selected : index % 2 === 0 ? copy.ready : copy.review,
     }));
-  }, [activeSection, demo]);
+  }, [activeSection, copy.ready, copy.review, copy.selected, demo]);
 
   if (!demo || !caseStudy) {
     return <Navigate to="/case-studies" replace />;
@@ -204,7 +245,7 @@ export function CaseStudyDemo() {
     <>
       <Seo
         title={`${demo.title} | ${site.name}`}
-        description={`Live demo preview untuk ${caseStudy.title}.`}
+        description={`${copy.seoDescription} ${caseStudy.title}.`}
       />
 
       <section className="py-12 sm:py-16">
@@ -214,7 +255,7 @@ export function CaseStudyDemo() {
             className="inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:text-navy"
           >
             <ArrowLeft aria-hidden="true" size={16} />
-            Back to case studies
+            {copy.back}
           </Link>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[0.95fr_0.75fr] lg:items-center">
@@ -240,7 +281,7 @@ export function CaseStudyDemo() {
             </div>
 
             <div className="grid gap-4">
-              <ProductMockup variant={demo.variant} title={caseStudy.title} eyebrow="Live demo preview" />
+              <ProductMockup variant={demo.variant} title={caseStudy.title} eyebrow={copy.previewEyebrow} />
               <div className="rounded-lg border border-line bg-white p-4 shadow-sm">
                 <div className="flex flex-wrap gap-2" aria-label="Demo tabs">
                   {demo.sections.map((section, index) => (
@@ -276,9 +317,9 @@ export function CaseStudyDemo() {
         <div className="container-shell grid gap-6 lg:grid-cols-[0.55fr_1fr] lg:items-start">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-              Demo scope
+              {copy.scopeEyebrow}
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-navy">Apa yang ditampilkan di demo ini?</h2>
+            <h2 className="mt-3 text-3xl font-semibold text-navy">{copy.scopeTitle}</h2>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -306,11 +347,11 @@ export function CaseStudyDemo() {
             <div className="grid gap-6 lg:grid-cols-[0.45fr_1fr] lg:items-start">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-                  Interactive preview
+                  {copy.interactiveEyebrow}
                 </p>
-                <h2 className="mt-3 text-3xl font-semibold text-navy">Simulasi bagian yang bisa diklik.</h2>
+                <h2 className="mt-3 text-3xl font-semibold text-navy">{copy.interactiveTitle}</h2>
                 <p className="mt-4 leading-7 text-slate-600">
-                  Klik baris di kanan untuk melihat bagaimana scope demo bisa diprioritaskan sebelum build.
+                  {copy.interactiveIntro}
                 </p>
               </div>
               <div className="grid gap-3">
@@ -345,18 +386,18 @@ export function CaseStudyDemo() {
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan">
-                Ready to discuss
+                {copy.ctaEyebrow}
               </p>
-              <h2 className="mt-3 text-3xl font-semibold">Ingin demo seperti ini untuk bisnis Anda?</h2>
+              <h2 className="mt-3 text-3xl font-semibold">{copy.ctaTitle}</h2>
               <p className="mt-4 max-w-2xl leading-7 text-slate-300">
-                Arkode Labs bisa membantu menerjemahkan kebutuhan menjadi scope, visual preview, dan delivery plan.
+                {copy.ctaText}
               </p>
             </div>
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 font-semibold text-navy transition hover:bg-paper"
             >
-              Konsultasi proyek
+              {copy.ctaButton}
               <CheckCircle2 aria-hidden="true" size={18} />
             </Link>
           </div>

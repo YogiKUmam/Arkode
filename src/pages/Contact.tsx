@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
-import { site } from '../content/site';
+import { useLanguage } from '../content/LanguageContext';
+import { useContent } from '../content/site';
 
 const projectTypes = [
   'Company profile website',
@@ -48,7 +49,156 @@ const initialDiscovery: DiscoveryState = {
   message: '',
 };
 
+const contactCopy = {
+  en: {
+    seoDescription:
+      'Contact Arkode Labs through a discovery form for websites, web apps, dashboards, UI/UX, or maintenance projects.',
+    eyebrow: 'Discovery form',
+    title: 'Tell us what digital solution you want to make cleaner.',
+    intro:
+      'Answer a few short questions so your initial brief is organized before it goes to WhatsApp. We will respond with a scope check and recommended next steps.',
+    responseSignal: 'Response signal',
+    responseTime: '1 business day',
+    responseText: 'For initial replies, scope checks, and recommended next steps.',
+    sectionEyebrow: 'Start a conversation',
+    sectionTitle: 'Build your project brief in 4 steps.',
+    steps: ['Project', 'Scope', 'Contact', 'Brief'],
+    projectTitle: 'What do you want to build?',
+    projectText: 'Choose the project type and main goal.',
+    projectType: 'Project type',
+    projectPlaceholder: 'Choose project type',
+    goal: 'Main goal',
+    goalPlaceholder: 'Choose goal',
+    scopeTitle: 'How fast and how large is the scope?',
+    scopeText: 'This helps us recommend priorities.',
+    timeline: 'Timeline',
+    timelinePlaceholder: 'Choose timeline',
+    budget: 'Budget / scope',
+    budgetPlaceholder: 'Choose scope range',
+    estimatorLink: 'Not sure yet? Open the project estimator',
+    contactTitle: 'How can we contact you?',
+    contactText: 'Add your main contact so we can respond with the right context.',
+    name: 'Name',
+    namePlaceholder: 'Your name',
+    company: 'Company',
+    companyPlaceholder: 'Company name',
+    emailOrWhatsapp: 'Email or WhatsApp',
+    contactPlaceholder: 'email@domain.com or WhatsApp number',
+    briefTitle: 'Add a short note.',
+    briefText: 'Tell us the current situation, references, or main problem you want to solve.',
+    message: 'Message',
+    messagePlaceholder:
+      'Example: we need a 5-page company profile website, want to look more credible, and need a clear WhatsApp CTA.',
+    back: 'Back',
+    next: 'Next',
+    send: 'Send brief via WhatsApp',
+    briefPreview: 'Brief preview',
+    briefPreviewText: 'This summary will go to WhatsApp so the first discussion is cleaner.',
+    beforeEyebrow: 'Before contact',
+    beforeTitle: 'Not sure which project category fits your needs?',
+    estimatorCta: 'Open project estimator',
+    whatsappGreeting: 'Hi Arkode Labs, I would like to discuss a project.',
+    summaryLabels: {
+      name: 'Name',
+      company: 'Company',
+      contact: 'Contact',
+      projectType: 'Project type',
+      goal: 'Main goal',
+      timeline: 'Timeline',
+      budget: 'Budget/scope',
+      note: 'Note',
+    },
+    projectTypes: [
+      'Company profile website',
+      'Landing page campaign',
+      'Custom web app',
+      'Dashboard / internal system',
+      'Maintenance / retainer',
+      'Not sure yet',
+    ],
+    goals: [
+      'Improve brand credibility',
+      'Generate leads/inquiries',
+      'Streamline internal processes',
+      'Build an MVP or digital product',
+      'Maintain and grow an existing website',
+    ],
+    timelines: ['1-2 weeks', '3-5 weeks', '6-8 weeks', 'Still flexible'],
+    budgets: ['Not defined yet', 'Starter', 'Professional', 'Custom project', 'Monthly retainer'],
+  },
+  id: {
+    seoDescription:
+      'Hubungi Arkode Labs melalui discovery form untuk diskusi website, web app, dashboard, UI/UX, atau maintenance project.',
+    eyebrow: 'Discovery form',
+    title: 'Ceritakan kebutuhan digital yang ingin Anda rapikan.',
+    intro:
+      'Jawab beberapa pertanyaan singkat agar brief awal Anda langsung rapi saat masuk ke WhatsApp. Kami akan membalas dengan scope check dan rekomendasi langkah berikutnya.',
+    responseSignal: 'Response signal',
+    responseTime: '1 hari kerja',
+    responseText: 'Untuk reply awal, scope check, dan rekomendasi langkah berikutnya.',
+    sectionEyebrow: 'Start a conversation',
+    sectionTitle: 'Susun brief project dalam 4 langkah.',
+    steps: ['Project', 'Scope', 'Contact', 'Brief'],
+    projectTitle: 'Apa yang ingin dibuat?',
+    projectText: 'Pilih tipe project dan tujuan utamanya.',
+    projectType: 'Jenis project',
+    projectPlaceholder: 'Pilih jenis project',
+    goal: 'Tujuan utama',
+    goalPlaceholder: 'Pilih tujuan',
+    scopeTitle: 'Seberapa cepat dan sebesar apa scope-nya?',
+    scopeText: 'Informasi ini membantu kami memberi rekomendasi prioritas.',
+    timeline: 'Timeline',
+    timelinePlaceholder: 'Pilih timeline',
+    budget: 'Budget / scope',
+    budgetPlaceholder: 'Pilih gambaran scope',
+    estimatorLink: 'Belum yakin? Buka project estimator',
+    contactTitle: 'Bagaimana kami bisa menghubungi Anda?',
+    contactText: 'Isi kontak utama agar kami bisa membalas dengan konteks yang tepat.',
+    name: 'Nama',
+    namePlaceholder: 'Nama Anda',
+    company: 'Perusahaan',
+    companyPlaceholder: 'Nama perusahaan',
+    emailOrWhatsapp: 'Email atau WhatsApp',
+    contactPlaceholder: 'email@domain.com atau nomor WA',
+    briefTitle: 'Tambahkan catatan singkat.',
+    briefText: 'Ceritakan kondisi saat ini, referensi, atau kendala utama yang ingin diselesaikan.',
+    message: 'Pesan',
+    messagePlaceholder:
+      'Contoh: kami butuh website profil 5 halaman, ingin terlihat lebih kredibel, dan perlu CTA WhatsApp yang jelas.',
+    back: 'Kembali',
+    next: 'Lanjut',
+    send: 'Kirim brief via WhatsApp',
+    briefPreview: 'Brief preview',
+    briefPreviewText: 'Ringkasan ini akan dibawa ke WhatsApp agar diskusi pertama lebih rapi.',
+    beforeEyebrow: 'Before contact',
+    beforeTitle: 'Belum yakin scope project Anda masuk kategori apa?',
+    estimatorCta: 'Buka project estimator',
+    whatsappGreeting: 'Halo Arkode Labs, saya ingin konsultasi project.',
+    summaryLabels: {
+      name: 'Nama',
+      company: 'Perusahaan',
+      contact: 'Kontak',
+      projectType: 'Jenis project',
+      goal: 'Tujuan utama',
+      timeline: 'Timeline',
+      budget: 'Budget/scope',
+      note: 'Catatan',
+    },
+    projectTypes,
+    goals,
+    timelines,
+    budgets,
+  },
+};
+
 export function Contact() {
+  const { language } = useLanguage();
+  const { site } = useContent();
+  const copy = contactCopy[language];
+  const projectTypes = copy.projectTypes;
+  const goals = copy.goals;
+  const timelines = copy.timelines;
+  const budgets = copy.budgets;
   const [step, setStep] = useState(0);
   const [discovery, setDiscovery] = useState<DiscoveryState>(initialDiscovery);
 
@@ -64,19 +214,19 @@ export function Contact() {
   }, [discovery, step]);
 
   const summaryLines = [
-    `Nama: ${discovery.name || '-'}`,
-    `Perusahaan: ${discovery.company || '-'}`,
-    `Kontak: ${discovery.contact || '-'}`,
-    `Jenis project: ${discovery.projectType || '-'}`,
-    `Tujuan utama: ${discovery.goal || '-'}`,
-    `Timeline: ${discovery.timeline || '-'}`,
-    `Budget/scope: ${discovery.budget || '-'}`,
+    `${copy.summaryLabels.name}: ${discovery.name || '-'}`,
+    `${copy.summaryLabels.company}: ${discovery.company || '-'}`,
+    `${copy.summaryLabels.contact}: ${discovery.contact || '-'}`,
+    `${copy.summaryLabels.projectType}: ${discovery.projectType || '-'}`,
+    `${copy.summaryLabels.goal}: ${discovery.goal || '-'}`,
+    `${copy.summaryLabels.timeline}: ${discovery.timeline || '-'}`,
+    `${copy.summaryLabels.budget}: ${discovery.budget || '-'}`,
     '',
-    `Catatan: ${discovery.message || '-'}`,
+    `${copy.summaryLabels.note}: ${discovery.message || '-'}`,
   ];
 
   const whatsappUrl = `https://wa.me/${site.phone.replace(/\D/g, '')}?text=${encodeURIComponent(
-    ['Halo Arkode Labs, saya ingin konsultasi project.', '', ...summaryLines].join('\n'),
+    [copy.whatsappGreeting, '', ...summaryLines].join('\n'),
   )}`;
 
   function nextStep() {
@@ -91,35 +241,34 @@ export function Contact() {
     <>
       <Seo
         title={`Contact | ${site.name}`}
-        description="Hubungi Arkode Labs melalui discovery form untuk diskusi website, web app, dashboard, UI/UX, atau maintenance project."
+        description={copy.seoDescription}
       />
 
       <section className="relative overflow-hidden py-16 sm:py-24">
         <div className="absolute inset-x-0 top-0 -z-10 h-[460px] tech-grid-bg opacity-55" aria-hidden="true" />
         <div className="container-shell grid gap-8 lg:grid-cols-[1fr_0.42fr] lg:items-end">
           <div className="max-w-4xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Discovery form</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">{copy.eyebrow}</p>
             <h1 className="mt-4 text-3xl font-semibold leading-tight text-navy sm:text-5xl">
-              Ceritakan kebutuhan digital yang ingin Anda rapikan.
+              {copy.title}
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Jawab beberapa pertanyaan singkat agar brief awal Anda langsung rapi saat masuk ke WhatsApp.
-              Kami akan membalas dengan scope check dan rekomendasi langkah berikutnya.
+              {copy.intro}
             </p>
           </div>
           <div className="rounded-lg border border-line bg-white p-5 shadow-panel">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Response signal</p>
-            <p className="mt-3 text-3xl font-semibold text-navy">1 hari kerja</p>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Untuk reply awal, scope check, dan rekomendasi langkah berikutnya.</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">{copy.responseSignal}</p>
+            <p className="mt-3 text-3xl font-semibold text-navy">{copy.responseTime}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{copy.responseText}</p>
           </div>
         </div>
       </section>
 
-      <Section eyebrow="Start a conversation" title="Susun brief project dalam 4 langkah." className="bg-white">
+      <Section eyebrow={copy.sectionEyebrow} title={copy.sectionTitle} className="bg-white">
         <div className="grid gap-6 lg:grid-cols-[1fr_0.42fr] lg:items-start">
           <div className="rounded-lg border border-line bg-white p-6 shadow-panel sm:p-8">
             <div className="mb-8 grid gap-3 sm:grid-cols-4" aria-label="Discovery progress">
-              {['Project', 'Scope', 'Contact', 'Brief'].map((label, index) => (
+              {copy.steps.map((label, index) => (
                 <button
                   key={label}
                   type="button"
@@ -140,18 +289,18 @@ export function Contact() {
 
             {step === 0 && (
               <div>
-                <h2 className="text-2xl font-semibold text-navy">Apa yang ingin dibuat?</h2>
-                <p className="mt-3 leading-7 text-slate-600">Pilih tipe project dan tujuan utamanya.</p>
+                <h2 className="text-2xl font-semibold text-navy">{copy.projectTitle}</h2>
+                <p className="mt-3 leading-7 text-slate-600">{copy.projectText}</p>
                 <div className="mt-6 grid gap-5 md:grid-cols-2">
                   <label className="grid gap-2 text-sm font-semibold text-ink">
-                    Jenis project
+                    {copy.projectType}
                     <select
                       required
                       value={discovery.projectType}
                       onChange={(event) => updateField('projectType', event.target.value)}
                       className="rounded-md border border-line bg-white px-4 py-3 font-normal focus:border-accent"
                     >
-                      <option value="">Pilih jenis project</option>
+                      <option value="">{copy.projectPlaceholder}</option>
                       {projectTypes.map((projectType) => (
                         <option key={projectType} value={projectType}>
                           {projectType}
@@ -160,14 +309,14 @@ export function Contact() {
                     </select>
                   </label>
                   <label className="grid gap-2 text-sm font-semibold text-ink">
-                    Tujuan utama
+                    {copy.goal}
                     <select
                       required
                       value={discovery.goal}
                       onChange={(event) => updateField('goal', event.target.value)}
                       className="rounded-md border border-line bg-white px-4 py-3 font-normal focus:border-accent"
                     >
-                      <option value="">Pilih tujuan</option>
+                      <option value="">{copy.goalPlaceholder}</option>
                       {goals.map((goal) => (
                         <option key={goal} value={goal}>
                           {goal}
@@ -181,18 +330,18 @@ export function Contact() {
 
             {step === 1 && (
               <div>
-                <h2 className="text-2xl font-semibold text-navy">Seberapa cepat dan sebesar apa scope-nya?</h2>
-                <p className="mt-3 leading-7 text-slate-600">Informasi ini membantu kami memberi rekomendasi prioritas.</p>
+                <h2 className="text-2xl font-semibold text-navy">{copy.scopeTitle}</h2>
+                <p className="mt-3 leading-7 text-slate-600">{copy.scopeText}</p>
                 <div className="mt-6 grid gap-5 md:grid-cols-2">
                   <label className="grid gap-2 text-sm font-semibold text-ink">
-                    Timeline
+                    {copy.timeline}
                     <select
                       required
                       value={discovery.timeline}
                       onChange={(event) => updateField('timeline', event.target.value)}
                       className="rounded-md border border-line bg-white px-4 py-3 font-normal focus:border-accent"
                     >
-                      <option value="">Pilih timeline</option>
+                      <option value="">{copy.timelinePlaceholder}</option>
                       {timelines.map((timeline) => (
                         <option key={timeline} value={timeline}>
                           {timeline}
@@ -201,14 +350,14 @@ export function Contact() {
                     </select>
                   </label>
                   <label className="grid gap-2 text-sm font-semibold text-ink">
-                    Budget / scope
+                    {copy.budget}
                     <select
                       required
                       value={discovery.budget}
                       onChange={(event) => updateField('budget', event.target.value)}
                       className="rounded-md border border-line bg-white px-4 py-3 font-normal focus:border-accent"
                     >
-                      <option value="">Pilih gambaran scope</option>
+                      <option value="">{copy.budgetPlaceholder}</option>
                       {budgets.map((budget) => (
                         <option key={budget} value={budget}>
                           {budget}
@@ -221,7 +370,7 @@ export function Contact() {
                   to="/estimator"
                   className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:text-navy"
                 >
-                  Belum yakin? Buka project estimator
+                  {copy.estimatorLink}
                   <ArrowRight aria-hidden="true" size={16} />
                 </Link>
               </div>
@@ -229,39 +378,39 @@ export function Contact() {
 
             {step === 2 && (
               <div>
-                <h2 className="text-2xl font-semibold text-navy">Bagaimana kami bisa menghubungi Anda?</h2>
-                <p className="mt-3 leading-7 text-slate-600">Isi kontak utama agar kami bisa membalas dengan konteks yang tepat.</p>
+                <h2 className="text-2xl font-semibold text-navy">{copy.contactTitle}</h2>
+                <p className="mt-3 leading-7 text-slate-600">{copy.contactText}</p>
                 <div className="mt-6 grid gap-5 md:grid-cols-2">
                   <label className="grid gap-2 text-sm font-semibold text-ink">
-                    Nama
+                    {copy.name}
                     <input
                       required
                       value={discovery.name}
                       onChange={(event) => updateField('name', event.target.value)}
                       autoComplete="name"
                       className="rounded-md border border-line bg-white px-4 py-3 font-normal focus:border-accent"
-                      placeholder="Nama Anda"
+                      placeholder={copy.namePlaceholder}
                     />
                   </label>
                   <label className="grid gap-2 text-sm font-semibold text-ink">
-                    Perusahaan
+                    {copy.company}
                     <input
                       value={discovery.company}
                       onChange={(event) => updateField('company', event.target.value)}
                       autoComplete="organization"
                       className="rounded-md border border-line bg-white px-4 py-3 font-normal focus:border-accent"
-                      placeholder="Nama perusahaan"
+                      placeholder={copy.companyPlaceholder}
                     />
                   </label>
                   <label className="grid gap-2 text-sm font-semibold text-ink md:col-span-2">
-                    Email atau WhatsApp
+                    {copy.emailOrWhatsapp}
                     <input
                       required
                       value={discovery.contact}
                       onChange={(event) => updateField('contact', event.target.value)}
                       autoComplete="email"
                       className="rounded-md border border-line bg-white px-4 py-3 font-normal focus:border-accent"
-                      placeholder="email@domain.com atau nomor WA"
+                      placeholder={copy.contactPlaceholder}
                     />
                   </label>
                 </div>
@@ -270,17 +419,17 @@ export function Contact() {
 
             {step === 3 && (
               <div>
-                <h2 className="text-2xl font-semibold text-navy">Tambahkan catatan singkat.</h2>
-                <p className="mt-3 leading-7 text-slate-600">Ceritakan kondisi saat ini, referensi, atau kendala utama yang ingin diselesaikan.</p>
+                <h2 className="text-2xl font-semibold text-navy">{copy.briefTitle}</h2>
+                <p className="mt-3 leading-7 text-slate-600">{copy.briefText}</p>
                 <label className="mt-6 grid gap-2 text-sm font-semibold text-ink">
-                  Pesan
+                  {copy.message}
                   <textarea
                     required
                     rows={7}
                     value={discovery.message}
                     onChange={(event) => updateField('message', event.target.value)}
                     className="resize-y rounded-md border border-line bg-white px-4 py-3 font-normal leading-6 focus:border-accent"
-                    placeholder="Contoh: kami butuh website profil 5 halaman, ingin terlihat lebih kredibel, dan perlu CTA WhatsApp yang jelas."
+                    placeholder={copy.messagePlaceholder}
                   />
                 </label>
               </div>
@@ -294,7 +443,7 @@ export function Contact() {
                 className="inline-flex items-center justify-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-semibold text-navy transition hover:border-accent disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <ArrowLeft aria-hidden="true" size={16} />
-                Kembali
+                {copy.back}
               </button>
               {step < 3 ? (
                 <button
@@ -303,7 +452,7 @@ export function Contact() {
                   disabled={!stepIsValid}
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Lanjut
+                  {copy.next}
                   <ArrowRight aria-hidden="true" size={16} />
                 </button>
               ) : (
@@ -315,7 +464,7 @@ export function Contact() {
                       : 'pointer-events-none bg-slate-300 text-white'
                   }`}
                 >
-                  Kirim brief via WhatsApp
+                  {copy.send}
                   <Send aria-hidden="true" size={16} />
                 </a>
               )}
@@ -323,9 +472,9 @@ export function Contact() {
           </div>
 
           <aside className="rounded-lg border border-line bg-navy p-6 text-white shadow-panel">
-            <h2 className="text-2xl font-semibold text-white">Brief preview</h2>
+            <h2 className="text-2xl font-semibold text-white">{copy.briefPreview}</h2>
             <p className="mt-3 leading-7 text-slate-300">
-              Ringkasan ini akan dibawa ke WhatsApp agar diskusi pertama lebih rapi.
+              {copy.briefPreviewText}
             </p>
             <dl className="mt-6 grid gap-3">
               {summaryLines.filter(Boolean).map((line) => (
@@ -358,12 +507,12 @@ export function Contact() {
         </div>
       </Section>
 
-      <Section eyebrow="Before contact" title="Belum yakin scope project Anda masuk kategori apa?">
+      <Section eyebrow={copy.beforeEyebrow} title={copy.beforeTitle}>
         <Link
           to="/estimator"
           className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-white transition hover:bg-navy"
         >
-          Buka project estimator
+          {copy.estimatorCta}
           <CheckCircle2 aria-hidden="true" size={18} />
         </Link>
       </Section>

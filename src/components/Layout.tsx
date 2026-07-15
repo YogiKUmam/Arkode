@@ -2,12 +2,14 @@ import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 
-import { navItems, site } from '../content/site';
+import { LanguageToggle } from '../content/LanguageContext';
+import { useContent } from '../content/site';
 
 const mobileMenuId = 'site-mobile-menu';
 
 export function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { navItems, pageCopy, site } = useContent();
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     [
@@ -43,11 +45,12 @@ export function Layout() {
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
+            <LanguageToggle />
             <Link
               to="/contact"
               className="inline-flex items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-navy"
             >
-              Konsultasi
+              {pageCopy.common.consultation}
             </Link>
           </div>
 
@@ -83,8 +86,11 @@ export function Layout() {
               className="mt-2 inline-flex items-center justify-center rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:bg-navy"
               onClick={() => setIsMenuOpen(false)}
             >
-              Konsultasi
+              {pageCopy.common.consultation}
             </Link>
+            <div className="mt-2">
+              <LanguageToggle compact />
+            </div>
           </nav>
         </div>
       </header>

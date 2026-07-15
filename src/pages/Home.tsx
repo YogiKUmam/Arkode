@@ -7,35 +7,13 @@ import { Section } from '../components/Section';
 import { Seo } from '../components/Seo';
 import { ProductMockup, WebsitePreview } from '../components/VisualMockups';
 import { ManagedCaseStudy } from '../content/adminContent';
-import { caseStudies, faqs, problems, processSteps, services, site } from '../content/site';
+import { useContent } from '../content/site';
 
-const trustItems = [
-  {
-    icon: Code2,
-    title: 'Frontend modern',
-    text: 'React-ready, responsive, cepat, dan mudah dikembangkan.',
-  },
-  {
-    icon: Layers3,
-    title: 'Scope jelas',
-    text: 'Discovery, prioritas, timeline, dan deliverable dibuat transparan.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Launch rapi',
-    text: 'SEO dasar, aksesibilitas, QA mobile, dan support setelah online.',
-  },
-];
-
-const capabilityItems = ['Company profile', 'Custom web app', 'Dashboard', 'UI/UX', 'Maintenance'];
-
-const proofItems = [
-  { value: '01', label: 'Discovery-first scope' },
-  { value: '02', label: 'Responsive product UI' },
-  { value: '03', label: 'Launch and support' },
-];
+const trustIcons = [Code2, Layers3, ShieldCheck];
 
 export function Home() {
+  const { caseStudies, faqs, pageCopy, problems, processSteps, services, site } = useContent();
+  const copy = pageCopy.home;
   const featuredCase = caseStudies[0];
   const secondaryCases = caseStudies.slice(1, 3);
   const featuredService = services.find((service) => service.title === 'Web Application Development') ?? services[0];
@@ -47,8 +25,8 @@ export function Home() {
   return (
     <>
       <Seo
-        title={`${site.name} | Software House dan Digital Solution Partner`}
-        description="Software house untuk website profesional, web app, dashboard, UI/UX, dan maintenance yang siap berkembang."
+        title={copy.seoTitle}
+        description={copy.seoDescription}
       />
 
       <section className="relative overflow-hidden py-16 sm:py-24">
@@ -70,18 +48,18 @@ export function Home() {
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-white transition hover:bg-navy"
               >
-                Konsultasi Proyek
+                {pageCopy.common.projectConsultation}
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
               <Link
                 to="/services"
                 className="inline-flex items-center justify-center rounded-md border border-line bg-white px-5 py-3 font-semibold text-navy transition hover:border-accent hover:text-accent"
               >
-                Lihat Layanan
+                {pageCopy.common.viewServices}
               </Link>
             </div>
             <div className="mt-10 grid gap-3 sm:grid-cols-3">
-              {proofItems.map((item) => (
+              {copy.proofItems.map((item) => (
                 <div key={item.label} className="border-l-2 border-accent bg-white/70 px-4 py-3 shadow-sm">
                   <p className="text-2xl font-semibold text-navy">{item.value}</p>
                   <p className="mt-1 text-sm font-medium text-slate-600">{item.label}</p>
@@ -106,11 +84,11 @@ export function Home() {
                   Build-ready
                 </span>
               </div>
-              <ProductMockup variant="dashboard" title="Dashboard, website, dan web app dalam satu fondasi delivery." eyebrow="Arkode system preview" />
+              <ProductMockup variant="dashboard" title={copy.systemPreviewTitle} eyebrow={copy.systemPreviewEyebrow} />
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
-              {trustItems.map((item) => {
-                const Icon = item.icon;
+              {copy.trustItems.map((item, index) => {
+                const Icon = trustIcons[index] ?? Code2;
 
                 return (
                   <article key={item.title} className="rounded-lg border border-line bg-white p-4 shadow-sm">
@@ -128,9 +106,9 @@ export function Home() {
       <section className="border-y border-line bg-white/80 py-5">
         <div className="container-shell flex flex-wrap items-center gap-3">
           <p className="mr-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-            Capabilities
+            {copy.capabilityLabel}
           </p>
-          {capabilityItems.map((item) => (
+          {copy.capabilityItems.map((item) => (
             <span key={item} className="rounded-md border border-line bg-white px-3 py-2 text-sm font-semibold text-navy">
               {item}
             </span>
@@ -139,29 +117,29 @@ export function Home() {
       </section>
 
       <Section
-        eyebrow="Masalah yang kami selesaikan"
-        title="Solusi digital yang rapi dari tampilan sampai fondasi teknis."
+        eyebrow={copy.problemEyebrow}
+        title={copy.problemTitle}
       >
         <div className="grid gap-4 md:grid-cols-2">
           {problems.map((problem) => (
             <SimpleCard
               key={problem}
               title={problem}
-              text="Kami bantu menerjemahkan masalah ini menjadi struktur halaman, flow, dan sistem yang bisa digunakan."
+              text={copy.problemCardText}
             />
           ))}
         </div>
       </Section>
 
       <Section
-        eyebrow="Layanan utama"
-        title="Bangun aset digital dengan prioritas yang jelas."
-        intro="Kami menggabungkan strategi, desain interface, dan engineering agar website atau sistem tidak hanya terlihat modern, tetapi juga siap dipakai."
+        eyebrow={copy.serviceEyebrow}
+        title={copy.serviceTitle}
+        intro={copy.serviceIntro}
         className="bg-white"
       >
         <div className="grid gap-5 lg:grid-cols-[1.05fr_1fr]">
           <article className="rounded-lg bg-navy p-6 text-white shadow-panel">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan">Featured service</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan">{copy.featuredService}</p>
             <h3 className="mt-4 text-3xl font-semibold">{featuredService.title}</h3>
             <p className="mt-4 leading-8 text-slate-300">{featuredService.summary}</p>
             <p className="mt-6 rounded-md border border-white/10 bg-white/10 p-4 font-medium leading-7">
@@ -184,15 +162,15 @@ export function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Case studies" title="Project showcase yang lebih mudah dipercaya.">
+      <Section eyebrow={copy.caseEyebrow} title={copy.caseTitle}>
         <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
           {featuredCase && (
             <article className="rounded-lg border border-line bg-white p-6 shadow-panel">
               {featuredImageUrl ? (
                 <WebsitePreview
                   src={featuredImageUrl}
-                  alt={`Tampilan website ${featuredCase.title}`}
-                  eyebrow="Featured live preview"
+                  alt={`${featuredCase.title} preview`}
+                  eyebrow={copy.featuredPreviewEyebrow}
                 />
               ) : (
                 <ProductMockup variant={featuredVisual} title={featuredCase.title} eyebrow="Featured case" />
@@ -207,11 +185,11 @@ export function Home() {
               )}
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-md bg-paper p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Timeline</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">{pageCopy.common.timeline}</p>
                   <p className="mt-2 font-semibold text-navy">{featuredCase.timeline}</p>
                 </div>
                 <div className="rounded-md bg-paper p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Result</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">{pageCopy.common.result}</p>
                   <p className="mt-2 font-semibold text-accent">{featuredCase.result}</p>
                 </div>
               </div>
@@ -236,7 +214,7 @@ export function Home() {
               to="/case-studies"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-white transition hover:bg-navy"
             >
-              Lihat semua case study
+              {copy.allCases}
               <ArrowRight aria-hidden="true" size={18} />
             </Link>
           </div>
@@ -244,8 +222,8 @@ export function Home() {
       </Section>
 
       <Section
-        eyebrow="Delivery system"
-        title="Dari ide sampai launch dengan ritme yang terlihat."
+        eyebrow={copy.deliveryEyebrow}
+        title={copy.deliveryTitle}
         className="bg-white"
       >
         <div className="grid gap-3 lg:grid-cols-7">
@@ -260,17 +238,17 @@ export function Home() {
       </Section>
 
       <Section
-        eyebrow="Visual approach"
-        title="Setiap solusi dibangun dengan bentuk visual yang mudah dipahami."
-        intro="Preview, dashboard, dan flow dibuat sejak awal agar tim bisnis bisa melihat arah produk sebelum development penuh."
+        eyebrow={copy.visualEyebrow}
+        title={copy.visualTitle}
+        intro={copy.visualIntro}
       >
         <div className="grid gap-5 md:grid-cols-2">
-          <ProductMockup variant="website" title="Website company profile dengan struktur pesan dan CTA yang jelas." eyebrow="Website preview" />
-          <ProductMockup variant="process" title="User flow dan delivery plan yang bisa dipantau sejak discovery." eyebrow="Process preview" />
+          <ProductMockup variant="website" title={copy.visualPreviewTitle} eyebrow={copy.visualPreviewEyebrow} />
+          <ProductMockup variant="process" title={copy.processPreviewTitle} eyebrow={copy.processPreviewEyebrow} />
         </div>
       </Section>
 
-      <Section eyebrow="FAQ" title="Pertanyaan yang sering muncul sebelum mulai project.">
+      <Section eyebrow={copy.faqEyebrow} title={copy.faqTitle}>
         <div className="grid gap-4 md:grid-cols-2">
           {faqs.map((faq) => (
             <SimpleCard key={faq.question} title={faq.question} text={faq.answer} />

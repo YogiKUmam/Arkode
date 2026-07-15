@@ -3,12 +3,15 @@ import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 
 import App from '../App';
+import { LanguageProvider } from '../content/LanguageContext';
 
 function renderRoute(route: string) {
   return render(
-    <MemoryRouter initialEntries={[route]}>
-      <App />
-    </MemoryRouter>,
+    <LanguageProvider>
+      <MemoryRouter initialEntries={[route]}>
+        <App />
+      </MemoryRouter>
+    </LanguageProvider>,
   );
 }
 
@@ -24,7 +27,7 @@ describe('Accessibility basics', () => {
   it('labels required discovery fields and marks them required', () => {
     renderRoute('/contact');
 
-    expect(screen.getByLabelText(/jenis project/i)).toBeRequired();
-    expect(screen.getByLabelText(/tujuan utama/i)).toBeRequired();
+    expect(screen.getByLabelText(/project type/i)).toBeRequired();
+    expect(screen.getByLabelText(/main goal/i)).toBeRequired();
   });
 });

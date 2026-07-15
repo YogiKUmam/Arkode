@@ -3,12 +3,15 @@ import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 
 import App from '../App';
+import { LanguageProvider } from '../content/LanguageContext';
 
 function renderRoute(route: string) {
   return render(
-    <MemoryRouter initialEntries={[route]}>
-      <App />
-    </MemoryRouter>,
+    <LanguageProvider>
+      <MemoryRouter initialEntries={[route]}>
+        <App />
+      </MemoryRouter>
+    </LanguageProvider>,
   );
 }
 
@@ -19,7 +22,7 @@ describe('App routes', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /software house untuk website, web app, dan sistem digital yang siap berkembang/i,
+        name: /software house for websites, web apps, and digital systems built to scale/i,
       }),
     ).toBeInTheDocument();
   });
@@ -30,7 +33,7 @@ describe('App routes', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /layanan software house untuk website, web app, dashboard, dan sistem digital custom/i,
+        name: /software house services for websites, web apps, dashboards, and custom digital systems/i,
       }),
     ).toBeInTheDocument();
   });
@@ -41,7 +44,7 @@ describe('App routes', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /ceritakan kebutuhan digital yang ingin anda rapikan/i,
+        name: /tell us what digital solution you want to make cleaner/i,
       }),
     ).toBeInTheDocument();
   });
@@ -52,10 +55,10 @@ describe('App routes', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /hitung gambaran scope sebelum mulai konsultasi/i,
+        name: /estimate your project scope before the first consultation/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/rekomendasi awal/i)).toBeInTheDocument();
+    expect(screen.getByText(/initial recommendation/i)).toBeInTheDocument();
   });
 
   it('renders GitHub-backed case studies', () => {
