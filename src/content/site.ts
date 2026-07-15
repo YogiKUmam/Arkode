@@ -154,6 +154,7 @@ export const caseStudies = [
     timeline: 'Product prototype',
     result:
       'Pengguna mendapatkan assistant produktivitas personal yang menerjemahkan input bebas menjadi rencana kerja yang lebih jelas dan bisa ditindaklanjuti.',
+    demoUrl: 'https://focusmate-ai-iota.vercel.app/',
     repoUrl: 'https://github.com/YogiKUmam/FocusMate-AI',
     imageUrl: '/case-studies/focusmate-ai.png',
     overview:
