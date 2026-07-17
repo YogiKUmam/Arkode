@@ -61,13 +61,14 @@ describe('App routes', () => {
     expect(screen.getByText(/initial recommendation/i)).toBeInTheDocument();
   });
 
-  it('renders GitHub-backed case studies', () => {
+  it('renders live-demo case studies without source-code links', () => {
     renderRoute('/case-studies');
 
     expect(screen.getByRole('heading', { level: 2, name: /nusantara language academy/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /ai resume analyzer/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /eksport import bali/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /kosanq/i })).toBeInTheDocument();
-    expect(screen.getAllByRole('link', { name: /source code/i }).length).toBeGreaterThanOrEqual(6);
+    expect(screen.getAllByRole('link', { name: /live demo/i }).length).toBeGreaterThanOrEqual(6);
+    expect(screen.queryByRole('link', { name: /source code/i })).not.toBeInTheDocument();
   });
 });

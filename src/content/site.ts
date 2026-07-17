@@ -116,7 +116,6 @@ export const caseStudies = [
     result:
       'MVP siap demo untuk validasi platform pembelajaran berbasis skenario diplomatik dan kehidupan sehari-hari di Indonesia.',
     demoUrl: 'https://nusantara-language-academy.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/Nusantara-Language-Academy',
     imageUrl: '/case-studies/nusantara-language-academy.png',
     overview:
       'Nusantara Language Academy adalah platform belajar Bahasa Indonesia untuk konteks embassy life, rutinitas keluarga, dan kehidupan sehari-hari. Website ini menyediakan jalur belajar berbasis skenario, placement quiz, modul course, latihan listening/speaking/writing, sertifikat, serta dashboard admin prototype untuk memantau progres peserta.',
@@ -133,7 +132,6 @@ export const caseStudies = [
     result:
       'Pengguna mendapat panel hasil analisis, riwayat pemeriksaan, dan laporan PDF/TXT untuk mengevaluasi CV terhadap lowongan.',
     demoUrl: 'https://ai-resume-analyzer-sigma-coral.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/Ai-resume-analyzer',
     imageUrl: '/case-studies/ai-resume-analyzer.png',
     overview:
       'AI Resume Analyzer memperlihatkan kemampuan Arkode dalam membangun produk AI end-to-end: upload CV, ekstraksi teks PDF, scoring terhadap job description, analisis keyword, rekomendasi perbaikan, dan output laporan yang bisa digunakan kandidat untuk iterasi CV.',
@@ -150,7 +148,6 @@ export const caseStudies = [
     result:
       'Bisnis export-import memiliki company profile digital yang lebih kredibel untuk menjelaskan layanan, membangun trust, dan mengarahkan calon klien ke inquiry.',
     demoUrl: 'https://eksport-import-bali.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/eksport-import-bali',
     imageUrl: '/case-studies/eksport-import-bali.png',
     overview:
       'Eksport Import Bali menampilkan pendekatan website company profile untuk sektor jasa perdagangan: pesan utama yang langsung, halaman yang mudah dipindai, visual brand yang profesional, serta alur CTA yang cocok untuk calon klien lokal maupun internasional.',
@@ -183,7 +180,6 @@ export const caseStudies = [
     result:
       'Pengguna mendapatkan assistant produktivitas personal yang menerjemahkan input bebas menjadi rencana kerja yang lebih jelas dan bisa ditindaklanjuti.',
     demoUrl: 'https://focusmate-ai-iota.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/FocusMate-AI',
     imageUrl: '/case-studies/focusmate-ai.png',
     overview:
       'FocusMate AI adalah contoh eksplorasi produk AI yang fokus pada workflow sehari-hari: percakapan natural, pemetaan prioritas, pengingat konteks, dan rekomendasi aksi berikutnya untuk membantu pengguna tetap bergerak.',
@@ -200,7 +196,6 @@ export const caseStudies = [
     result:
       'Konsep learning planner tersusun sebagai produk digital yang bisa dikembangkan menjadi platform pendamping belajar mandiri.',
     demoUrl: 'https://step-up-dev-yogi.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/StepUp-Ai-LearningPlanner',
     imageUrl: '/case-studies/stepup-ai-learning-planner.png',
     overview:
       'StepUp AI Learning Planner menunjukkan arah produk edukasi yang membantu pengguna mengubah tujuan besar menjadi rencana belajar yang lebih kecil, terukur, dan mudah diikuti dari hari ke hari.',
@@ -217,7 +212,6 @@ export const caseStudies = [
     result:
       'Arkode memiliki pusat identitas digital yang siap menampilkan layanan, portfolio, proses kerja, dan jalur konsultasi untuk calon klien.',
     demoUrl: 'https://arkodelabs.vercel.app',
-    repoUrl: 'https://github.com/YogiKUmam/Arkode',
     imageUrl: '/case-studies/arkode-labs.png',
     overview:
       'Website Arkode Labs menjadi showcase utama brand: dari positioning software house, daftar layanan, portfolio project, artikel awal, sampai project estimator yang membantu calon klien memahami scope sebelum konsultasi.',
@@ -234,7 +228,6 @@ export const caseStudies = [
     result:
       'Profil developer tersusun dalam satu halaman publik yang lebih mudah dipakai untuk networking, lamaran, atau showcase kemampuan.',
     demoUrl: 'https://yogi-builds.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/Portofolio',
     imageUrl: '/case-studies/developer-portfolio.png',
     overview:
       'Developer Portfolio mewakili kebutuhan umum personal branding: menyusun identitas, skill, project, dan kontak menjadi halaman yang singkat, jelas, dan mudah dikembangkan seiring bertambahnya pengalaman.',
@@ -407,7 +400,6 @@ const englishCaseStudies = [
     result:
       'An MVP ready for validating a scenario-based language learning platform for diplomatic and everyday life in Indonesia.',
     demoUrl: 'https://nusantara-language-academy.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/Nusantara-Language-Academy',
     imageUrl: '/case-studies/nusantara-language-academy.png',
     overview:
       'Nusantara Language Academy is a Bahasa Indonesia learning platform for embassy life, family routines, and everyday situations. It includes scenario-based paths, a placement quiz, course modules, listening/speaking/writing practice, certificates, and an admin prototype for progress tracking.',
@@ -424,7 +416,6 @@ const englishCaseStudies = [
     result:
       'Users get an analysis panel, review history, and PDF/TXT reports for evaluating a resume against a job opening.',
     demoUrl: 'https://ai-resume-analyzer-sigma-coral.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/Ai-resume-analyzer',
     imageUrl: '/case-studies/ai-resume-analyzer.png',
     overview:
       'AI Resume Analyzer shows Arkode capability in end-to-end AI product delivery: CV upload, PDF text extraction, scoring against job descriptions, keyword analysis, improvement recommendations, and report output.',
@@ -441,7 +432,6 @@ const englishCaseStudies = [
     result:
       'The export-import business gets a more credible digital profile for explaining services, building trust, and directing prospects to inquiry.',
     demoUrl: 'https://eksport-import-bali.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/eksport-import-bali',
     imageUrl: '/case-studies/eksport-import-bali.png',
     overview:
       'Eksport Import Bali demonstrates a company profile website for trade services: direct messaging, scannable pages, professional brand visuals, and CTA flows for local and international prospects.',
@@ -474,7 +464,6 @@ const englishCaseStudies = [
     result:
       'Users get a personal productivity assistant that turns free-form input into clearer and more actionable work plans.',
     demoUrl: 'https://focusmate-ai-iota.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/FocusMate-AI',
     imageUrl: '/case-studies/focusmate-ai.png',
     overview:
       'FocusMate AI explores an everyday AI workflow: natural conversation, priority mapping, contextual memory, and next-action recommendations that help users keep moving.',
@@ -491,7 +480,6 @@ const englishCaseStudies = [
     result:
       'The learning planner concept becomes a digital product foundation that can evolve into a self-directed learning companion.',
     demoUrl: 'https://step-up-dev-yogi.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/StepUp-Ai-LearningPlanner',
     imageUrl: '/case-studies/stepup-ai-learning-planner.png',
     overview:
       'StepUp AI Learning Planner shows how an education product can turn big goals into smaller, measurable, and easier-to-follow learning plans.',
@@ -508,7 +496,6 @@ const englishCaseStudies = [
     result:
       'Arkode gets a digital identity hub for presenting services, portfolio, process, and consultation paths.',
     demoUrl: 'https://arkodelabs.vercel.app',
-    repoUrl: 'https://github.com/YogiKUmam/Arkode',
     imageUrl: '/case-studies/arkode-labs.png',
     overview:
       'The Arkode Labs website is the main brand showcase: software house positioning, service pages, portfolio, early articles, and a project estimator for scoping before consultation.',
@@ -525,7 +512,6 @@ const englishCaseStudies = [
     result:
       'The developer profile becomes a public page for networking, applications, and capability showcase.',
     demoUrl: 'https://yogi-builds.vercel.app/',
-    repoUrl: 'https://github.com/YogiKUmam/Portofolio',
     imageUrl: '/case-studies/developer-portfolio.png',
     overview:
       'Developer Portfolio reflects a common personal-branding need: organizing identity, skills, projects, and contact into a concise page that can grow with experience.',
@@ -625,7 +611,6 @@ const idPageCopy = {
     projectConsultation: 'Konsultasi proyek',
     viewServices: 'Lihat Layanan',
     liveDemo: 'Live Demo',
-    sourceCode: 'Source Code',
     timeline: 'Timeline',
     result: 'Result',
     featured: 'Featured',
@@ -755,7 +740,6 @@ const englishPageCopy = {
     projectConsultation: 'Project consultation',
     viewServices: 'View services',
     liveDemo: 'Live Demo',
-    sourceCode: 'Source Code',
     timeline: 'Timeline',
     result: 'Result',
     featured: 'Featured',

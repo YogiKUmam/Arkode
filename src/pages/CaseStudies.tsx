@@ -1,4 +1,4 @@
-import { ArrowRight, Github } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { CTA } from '../components/CTA';
@@ -29,20 +29,6 @@ function LiveDemoButton({ demoUrl, label }: { demoUrl: string; label: string }) 
   );
 }
 
-function SourceCodeButton({ repoUrl, label }: { repoUrl: string; label: string }) {
-  return (
-    <a
-      href={repoUrl}
-      target="_blank"
-      rel="noreferrer"
-      className="inline-flex items-center justify-center gap-2 rounded-md border border-line bg-white px-4 py-2 text-sm font-semibold text-navy transition hover:border-accent hover:text-accent"
-    >
-      <Github aria-hidden="true" size={16} />
-      {label}
-    </a>
-  );
-}
-
 export function CaseStudies() {
   const { caseStudies, pageCopy, site } = useContent();
   const copy = pageCopy.caseStudiesPage;
@@ -58,7 +44,6 @@ export function CaseStudies() {
   const featuredImageUrl = featuredCase && 'imageUrl' in featuredCase ? featuredCase.imageUrl : undefined;
   const featuredOverview = featuredCase && 'overview' in featuredCase ? featuredCase.overview : undefined;
   const featuredDemoUrl = featuredCase && 'demoUrl' in featuredCase ? featuredCase.demoUrl : undefined;
-  const featuredRepoUrl = featuredCase && 'repoUrl' in featuredCase ? featuredCase.repoUrl : undefined;
 
   return (
     <>
@@ -141,7 +126,6 @@ export function CaseStudies() {
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 {featuredDemoUrl && <LiveDemoButton demoUrl={featuredDemoUrl} label={pageCopy.common.liveDemo} />}
-                {featuredRepoUrl && <SourceCodeButton repoUrl={featuredRepoUrl} label={pageCopy.common.sourceCode} />}
               </div>
             </div>
           </article>
@@ -153,7 +137,6 @@ export function CaseStudies() {
               ? item.visual
               : 'website') as ManagedCaseStudy['visual'];
             const demoUrl = 'demoUrl' in item ? item.demoUrl : undefined;
-            const repoUrl = 'repoUrl' in item ? item.repoUrl : undefined;
             const imageUrl = 'imageUrl' in item ? item.imageUrl : undefined;
             const overview = 'overview' in item ? item.overview : undefined;
 
@@ -207,7 +190,6 @@ export function CaseStudies() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 {demoUrl && <LiveDemoButton demoUrl={demoUrl} label={pageCopy.common.liveDemo} />}
-                {repoUrl && <SourceCodeButton repoUrl={repoUrl} label={pageCopy.common.sourceCode} />}
               </div>
             </article>
           );
