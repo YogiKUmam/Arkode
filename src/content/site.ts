@@ -157,6 +157,22 @@ export const caseStudies = [
     visual: 'website',
   },
   {
+    title: 'KosanQ',
+    slug: 'kosanq',
+    label: 'Property Rental App',
+    summary:
+      'Aplikasi pencarian kos dengan lokasi, filter fasilitas, rekomendasi unit, wishlist, booking, dan alur navigasi mobile-first untuk calon penyewa.',
+    stack: ['React', 'Vercel', 'Mobile-first UI', 'Property Search UX'],
+    timeline: 'Product prototype',
+    result:
+      'Pengguna dapat menjelajahi pilihan kos secara cepat, memfilter kebutuhan utama, menyimpan favorit, dan masuk ke alur booking dari satu interface yang ringkas.',
+    demoUrl: 'https://apps-kosanq.vercel.app/',
+    imageUrl: '/case-studies/kosanq.png',
+    overview:
+      'KosanQ menunjukkan pendekatan produk marketplace kos yang praktis: lokasi sebagai konteks utama, filter fasilitas yang mudah dipakai, kartu rekomendasi, indikator trust, wishlist, booking, dan profil pengguna dalam tampilan yang terasa ringan untuk penggunaan harian.',
+    visual: 'dashboard',
+  },
+  {
     title: 'FocusMate AI',
     slug: 'focusmate-ai',
     label: 'AI Productivity Assistant',
@@ -430,6 +446,22 @@ const englishCaseStudies = [
     overview:
       'Eksport Import Bali demonstrates a company profile website for trade services: direct messaging, scannable pages, professional brand visuals, and CTA flows for local and international prospects.',
     visual: 'website',
+  },
+  {
+    title: 'KosanQ',
+    slug: 'kosanq',
+    label: 'Property Rental App',
+    summary:
+      'A boarding-house search app with location context, facility filters, unit recommendations, wishlist, booking, and mobile-first navigation for renters.',
+    stack: ['React', 'Vercel', 'Mobile-first UI', 'Property Search UX'],
+    timeline: 'Product prototype',
+    result:
+      'Users can browse boarding-house options quickly, filter key needs, save favorites, and move into booking from one compact interface.',
+    demoUrl: 'https://apps-kosanq.vercel.app/',
+    imageUrl: '/case-studies/kosanq.png',
+    overview:
+      'KosanQ demonstrates a practical rental marketplace product: location as the main context, easy facility filters, recommendation cards, trust indicators, wishlist, booking, and user profile flows in a lightweight daily-use interface.',
+    visual: 'dashboard',
   },
   {
     title: 'FocusMate AI',

@@ -67,6 +67,7 @@ describe('App routes', () => {
     expect(screen.getByRole('heading', { level: 2, name: /nusantara language academy/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /ai resume analyzer/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /eksport import bali/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3, name: /kosanq/i })).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /source code/i }).length).toBeGreaterThanOrEqual(6);
   });
 });
